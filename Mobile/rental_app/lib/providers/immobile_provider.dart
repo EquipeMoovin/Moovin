@@ -15,39 +15,40 @@ class ImmobileProvider with ChangeNotifier {
   final ApiService _apiService = ApiService();
 
   Future<void> fetchImmobile(int id) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
+  _isLoading = true;
+  _error = null;
 
-    try {
-  print('Buscando imóvel com id $id');
-  _immobile = await _apiService.fetchOneImmobile(id);
-  print('Imóvel recebido: $_immobile');
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    notifyListeners(); // <-- evitar rebuild imediato
+  });
 
-  if (_immobile?.photosBlob != null) {
-    print('Fotos encontradas: ${_immobile!.photosBlob.length}');
+  try {
+    print('Buscando imóvel com id $id');
+    _immobile = await _apiService.fetchOneImmobile(id);
+    print('Imóvel recebido: $_immobile');
 
-    // Buscar o blob de cada foto individualmente
-    for (final photo in _immobile!.photosBlob) {
-      print('Buscando imagem para photoId: ${photo.photoId}');
-      final imageData = await _apiService.fetchImageBlob(photo.photoId);
+    if (_immobile?.photosBlob != null) {
+      print('Fotos encontradas: ${_immobile!.photosBlob.length}');
 
-      print('Imagem recebida: $imageData');
-
-      photo.imageBase64 = imageData.imageBase64;
-      photo.contentType = imageData.contentType;
+      for (final photo in _immobile!.photosBlob) {
+        print('Buscando imagem para photoId: ${photo.photoId}');
+        final imageData = await _apiService.fetchImageBlob(photo.photoId);
+        photo.imageBase64 = imageData.imageBase64;
+        photo.contentType = imageData.contentType;
+      }
+    } else {
+      print('Nenhuma foto foi encontrada.');
     }
-  } else {
-    print('Nenhuma foto foi encontrada.');
+  } catch (e, stackTrace) {
+    print('Erro ao buscar imóvel ou imagens: $e');
+    print('StackTrace: $stackTrace');
+    _error = e.toString();
+  } finally {
+    _isLoading = false;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      notifyListeners(); // <-- também aqui
+    });
   }
-} catch (e, stackTrace) {
-  print('Erro ao buscar imóvel ou imagens: $e');
-  print('StackTrace: $stackTrace');
-  _error = e.toString();
-} finally {
-  _isLoading = false;
-  notifyListeners();
 }
 
-  }
 }

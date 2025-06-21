@@ -16,7 +16,11 @@ class OwnerProvider with ChangeNotifier {
   Future<void> fetchOwner({int? immobileId}) async {
     _isLoading = true;
     _error = null;
-    notifyListeners();
+
+    // 🔄 Notifica após o build frame
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      notifyListeners();
+    });
 
     try {
       if (immobileId != null) {
@@ -28,7 +32,9 @@ class OwnerProvider with ChangeNotifier {
       _error = e.toString();
     } finally {
       _isLoading = false;
-      notifyListeners();
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        notifyListeners();
+      });
     }
   }
 }

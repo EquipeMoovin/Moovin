@@ -10,7 +10,7 @@ class OwnerImmobilesScreen extends StatelessWidget {
   const OwnerImmobilesScreen({Key? key}) : super(key: key);
 
   Future<void> _launchRegisterUrl() async {
-    const url = 'https://moovin.onrender.com/api/immobile/register/part1/'; 
+    const url = 'http://127.0.0.1:8000/api/immobile/register/part1/'; 
 
     final uri = Uri.parse(url);
     if (await canLaunchUrl(uri)) {

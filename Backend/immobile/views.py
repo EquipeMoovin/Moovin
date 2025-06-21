@@ -19,9 +19,9 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
-
+from owner.models import Owner
 
 class ImmobileViewSet(viewsets.ModelViewSet):
     queryset = Immobile.objects.all()
@@ -157,10 +157,13 @@ class ImmobileDetailTemplateView(TemplateView):
         context = super().get_context_data(**kwargs)
         pk = self.kwargs.get('pk')
         immobile = get_object_or_404(Immobile, pk=pk)
-        context[self.context_object_name] = immobile
+        context['property'] = immobile
+        context['has_permission'] = self.request.user.has_perm('subscriptions.has_active_subscription')
+        
         return context
 #Adição/Create, são dividas em 2 telas, no templates tem 3 mas uma(registerstep1) nao foi usada pois so pegava os dados do usuario
-class ImmobileRegisterPart1View(CreateView):
+class ImmobileRegisterPart1View(LoginRequiredMixin,CreateView):
+    login_url = '/api/users/login-web/'
     model = Immobile
     form_class = ImmobileRegisterPart1Form 
     template_name = 'immobile/register_step2.html'
@@ -174,7 +177,9 @@ class ImmobileRegisterPart1View(CreateView):
     def form_invalid(self, form):
         return self.render_to_response(self.get_context_data(form=form))
 
-class ImmobileRegisterPart2View(FormView):
+class ImmobileRegisterPart2View(LoginRequiredMixin,FormView):
+
+    login_url = '/api/users/login-web/'
     form_class = ImmobileRegisterPart2Form
     template_name = 'immobile/register_step3.html'
     photo_form_class = ImmobilePhotoForm
@@ -189,8 +194,10 @@ class ImmobileRegisterPart2View(FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['immobile'] = self.get_immobile()
+        context['owner'] = self.request.user
         print("REGISTER STEP 2 - Get Context Data:")
         print("  Immobile in Context:", context['immobile'])
+        print('Owner in Context:',context['owner'])
         if 'photo_form' not in kwargs:
             context['photo_form'] = self.photo_form_class()
         return context
@@ -200,6 +207,8 @@ class ImmobileRegisterPart2View(FormView):
         immobile = self.get_immobile()
         immobile.description = form.cleaned_data['description']
         immobile.additional_rules = form.cleaned_data['additional_rules']
+        immobile.owner = Owner.objects.get(user=self.request.user)
+        immobile.user = self.request.user
         immobile.save()
         image_file = self.request.FILES.get('image')
         print("REGISTER STEP 2 - Form Valid:")
@@ -227,6 +236,7 @@ class ImmobileRegisterPart2View(FormView):
         print("  Errors:", form.errors)
         return self.render_to_response(self.get_context_data(form=form))
 
+    
     def serve_image_blob(request, photo_id):
         photo = get_object_or_404(ImmobilePhoto, id=photo_id)
         print("SERVE IMAGE BLOB:")
@@ -282,12 +292,24 @@ class ImmobileEditViewPart2(UpdateView):
         
         for image_file in self.request.FILES.getlist('image'):
             print("Processing file:", image_file.name, image_file.size, image_file.content_type)
-            blob_data = image_file.read()
-            print("First 20 bytes of blob_data:", blob_data[:20]) 
+            # blob_data = image_file.read()
+
+            if not image_file:
+                form_part2.add_error('image', 'Por favor, selecione uma imagem.')
+                return self.form_invalid(form_part2)
+
+            try:
+                image_blob = image_file.read()
+            except Exception as e:
+                form_part2.add_error('image', f'Erro ao ler a imagem: {e}')
+                return self.form_invalid(form_part2)
+
+
+            print("First 20 bytes of blob_data:", image_blob[:20]) 
         try:
             photo = ImmobilePhoto.objects.create(
                 immobile=immobile,
-                image_blob=blob_data,
+                image_blob=image_blob,
                 content_type=image_file.content_type
             )
             print("Photo object created:", photo.id, photo.content_type, photo.image_blob[:20] if photo.image_blob else None) # Check if saved

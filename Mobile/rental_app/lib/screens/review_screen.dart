@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/review.dart';
 import '../providers/review_provider.dart';
-import '../screens/review_create_screen.dart'; // Importe a tela de criação
+import '../screens/review_create_screen.dart';
 
 class ReviewsScreen extends StatefulWidget {
   final String reviewType; // 'TENANT', 'OWNER', 'PROPERTY'
   final int targetId;
-  final String title; // Optional title for the screen
+  final String title;
 
   const ReviewsScreen({
     super.key,
@@ -26,19 +26,22 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
   @override
   void initState() {
     super.initState();
-    print('ReviewsScreen - targetId: ${widget.targetId}, reviewType: ${widget.reviewType}');
-    final reviewProvider = Provider.of<ReviewProvider>(context, listen: false);
-    Future.wait([
-      reviewProvider.fetchReviews(type: widget.reviewType, targetId: widget.targetId),
-      _fetchTargetDetails(reviewProvider),
-    ]);
+    _loadReviewsAndDetails();
   }
 
-  Future<void> _fetchTargetDetails(ReviewProvider reviewProvider) async {
+  Future<void> _loadReviewsAndDetails() async {
+    final reviewProvider = Provider.of<ReviewProvider>(context, listen: false);
+
+    await reviewProvider.fetchReviews(
+      type: widget.reviewType,
+      targetId: widget.targetId,
+    );
+
     final details = await reviewProvider.fetchTargetDetails(
       type: widget.reviewType,
       id: widget.targetId,
     );
+
     setState(() {
       if (widget.reviewType == 'TENANT' || widget.reviewType == 'OWNER') {
         _targetName = details['name'] as String?;
@@ -65,11 +68,7 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text(
-            _targetName ?? widget.title,
-          ),
-        ),
+        title: Center(child: Text(_targetName ?? widget.title)),
       ),
       body: Consumer<ReviewProvider>(
         builder: (context, reviewProvider, child) {
@@ -78,7 +77,9 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
           }
 
           if (reviewProvider.error != null) {
-            return Center(child: Text('Erro ao carregar as avaliações: ${reviewProvider.error}'));
+            return Center(
+              child: Text('Erro ao carregar as avaliações: ${reviewProvider.error}'),
+            );
           }
 
           final reviews = reviewProvider.reviews;
@@ -99,12 +100,18 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Usuário ${review.authorId}', style: const TextStyle(fontWeight: FontWeight.bold)),
+                        Text(
+                          review.authorUsername,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
                         _buildRatingStars(review.rating),
                       ],
                     ),
                     const SizedBox(height: 8),
-                    Text(review.comment.isNotEmpty ? review.comment : 'Sem comentário.', style: const TextStyle(color: Colors.grey)),
+                    Text(
+                      review.comment.isNotEmpty ? review.comment : 'Sem comentário.',
+                      style: const TextStyle(color: Colors.grey),
+                    ),
                     const Divider(),
                   ],
                 ),
@@ -114,21 +121,22 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        heroTag: 'create_review_button', // Opcional: tag única para o FAB
+        heroTag: null,
         backgroundColor: Colors.green,
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          await Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => ChangeNotifierProvider(
                 create: (_) => ReviewProvider(),
                 child: Builder(
                   builder: (newContext) {
-                    final args = ModalRoute.of(newContext)?.settings.arguments as Map<String, dynamic>?;
-                    final reviewType = widget.reviewType; // Use o reviewType da tela atual
-                    final targetId = widget.targetId;     // Use o targetId da tela atual
-                    // Tente pegar o targetName, se disponível, senão use um padrão
-                    final targetName = _targetName ?? widget.title ?? 'Detalhe';
+                    final reviewType = widget.reviewType == 'immobile'
+                        ? 'PROPERTY'
+                        : widget.reviewType;
+                    final targetId = widget.targetId;
+                    final targetName = _targetName ?? widget.title;
+
                     return CreateReviewScreen(
                       reviewType: reviewType,
                       targetId: targetId,
@@ -139,6 +147,9 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
               ),
             ),
           );
+
+          // Recarrega as avaliações após o retorno da CreateReviewScreen
+          await _loadReviewsAndDetails();
         },
         child: const Icon(Icons.add),
       ),

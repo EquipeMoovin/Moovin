@@ -29,6 +29,7 @@ class ImmobileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Immobile
         fields = [
+            'owner',
             'id_immobile',
             'property_type',
             'zip_code',
