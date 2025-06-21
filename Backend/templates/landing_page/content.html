@@ -19,7 +19,6 @@
         </div>
     </section>
 
-    <!-- Descrição e Benefícios do Produto -->
     <section class="section description-benefits-section">
         <h2 class="section-title">O Moovin simplifica o aluguel para você.</h2>
         <p>Descubra uma nova forma de gerenciar seus imóveis e encontrar o lar perfeito. Nossa plataforma oferece transparência, eficiência e segurança em cada etapa do processo.</p>
@@ -48,34 +47,40 @@
         </div>
     </section>
 
-    <!-- Diferenciais do Moovin -->
     <section class="section differentiators-section">
         <h2 class="section-title">Por que escolher o Moovin?</h2>
         <div class="differentiators-grid">
             <div class="differentiator-item">
-                <div class="icon">✨</div>
+                <div class="icon">
+                    <i class="fas fa-lightbulb"></i> {# Substituído o emoji ✨ por um ícone de lâmpada/ideia #}
+                </div>
                 <h5>Facilidade de Uso</h5>
                 <p>Interface intuitiva e navegação simplificada para todos os usuários.</p>
             </div>
             <div class="differentiator-item">
-                <div class="icon">✅</div>
+                <div class="icon">
+                    <i class="fas fa-check-circle"></i> {# Substituído o emoji ✅ por um ícone de check (já usado no plano premium) #}
+                </div>
                 <h5>Transparência Total</h5>
                 <p>Informações claras sobre imóveis, contratos e pagamentos.</p>
             </div>
             <div class="differentiator-item">
-                <div class="icon">⚡</div>
+                <div class="icon">
+                    <i class="fas fa-bolt"></i> {# Substituído o emoji ⚡ por um ícone de raio #}
+                </div>
                 <h5>Eficiência e Rapidez</h5>
                 <p>Agilize processos de aluguel e encontre o que precisa em minutos.</p>
             </div>
             <div class="differentiator-item">
-                <div class="icon">🔒</div>
+                <div class="icon">
+                    <i class="fas fa-lock"></i> {# Substituído o emoji 🔒 por um ícone de cadeado #}
+                </div>
                 <h5>Segurança dos Dados</h5>
                 <p>Protegemos suas informações com as melhores práticas de segurança.</p>
             </div>
         </div>
     </section>
 
-    <!-- Depoimentos -->
     <section class="section testimonials-section">
         <h2 class="section-title">O que nossos usuários dizem</h2>
         <div class="testimonials-grid">
@@ -90,7 +95,6 @@
         </div>
     </section>
 
-    <!-- Seção "Plano Premium para Proprietários" -->
     <section class="section premium-plan-section">
         <h2 class="section-title">Plano Premium para Proprietários</h2>
         <p>Desbloqueie todo o potencial do Moovin com recursos exclusivos para gerenciar seus imóveis.</p>
@@ -100,36 +104,32 @@
                 <h4>Plano Gratuito</h4>
                 <div class="price">R$ 0<small>/mês</small></div>
                 <ul>
-                    <li><i class="fas fa-check-circle"></i> 1 imóvel cadastrado</li>
-                    <li><i class="fas fa-check-circle"></i> Gerenciamento básico de visitas</li>
-                    <li><i class="fas fa-check-circle"></i> Acompanhamento de pagamentos</li>
-                    <li class="unavailable"><i class="fas fa-times-circle"></i> Anúncios ilimitados</li>
-                    <li class="unavailable"><i class="fas fa-times-circle"></i> Suporte prioritário</li>
-                    <li class="unavailable"><i class="fas fa-times-circle"></i> Relatórios avançados</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--primary-color);"></i> Anúncio e cadastro ilimitado de imóveis</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--primary-color);"></i> Chat ilimitado com os interessados em alugar</li>
+                    <li class="unavailable"><i class="fas fa-times-circle" style="color: #dc3545;"></i> Gerenciamento avançado</li>
+                    <li class="unavailable"><i class="fas fa-times-circle" style="color: #dc3545;"></i> Agendamento de visita</li>
+                    <li class="unavailable"><i class="fas fa-times-circle" style="color: #dc3545;"></i> Acompanhamento de prazos de aluguel</li>
                 </ul>
                 <button class="btn btn-secondary" disabled>Plano Atual</button>
             </div>
 
             <div class="pricing-card">
                 <h4>Plano Premium</h4>
-                <div class="price">R$ 29,90<small>/mês</small></div>
+                <div class="price">R$ 39,90<small>/mês</small></div>
                 <ul>
-                    <li><i class="fas fa-check-circle"></i> Anúncios ilimitados</li>
-                    <li><i class="fas fa-check-circle"></i> Suporte prioritário 24/7</li>
-                    <li><i class="fas fa-check-circle"></i> Relatórios de desempenho avançados</li>
-                    <li><i class="fas fa-check-circle"></i> Gerenciamento completo de visitas</li>
-                    <li><i class="fas fa-check-circle"></i> Ferramentas de análise de mercado</li>
-                    <li><i class="fas fa-check-circle"></i> Integração com plataformas de pagamento</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--primary-color);"></i> Gerenciamento avançado de imóveis</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--primary-color);"></i> Geração de relatórios sobre imóveis alugados e anunciados</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--primary-color);"></i> Agendamento de visita a imóveis</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--primary-color);"></i> Acompanhamento de prazos de aluguel</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--primary-color);"></i> Notificações sobre contratos a vencer</li>
                 </ul>
                <a href="{% url 'checkout' %}"><button class="btn btn-primary">Assinar</button></a>
             </div>
         </div>
     </section>
 
-    <!-- Seções Combinadas 2: Download + FAQ -->
     <section class="section combined-section combined-section-alt-bg">
         <div class="combined-section-inner">
-            <!-- Instruções para Download -->
             <div class="section-column">
                 <h2 class="section-title">Baixe o Moovin agora!</h2>
                 <p>Comece a simplificar sua vida de aluguel hoje mesmo.</p>
@@ -148,7 +148,6 @@
                 </div>
             </div>
 
-            <!-- Perguntas Frequentes (FAQ) -->
             <div class="section-column">
                 <h2 class="section-title">Perguntas Frequentes</h2>
                 <div class="faq-container">
@@ -168,15 +167,6 @@
                         </div>
                         <div class="faq-answer">
                             <p>Sim, o download do APK é seguro e direto dos nossos servidores. Garantimos a integridade do arquivo. Se for a primeira vez que você baixa um APK de fora da Play Store, pode ser necessário habilitar a instalação de "fontes desconhecidas" nas configurações do seu Android.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            Como recuperar minha senha?
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Na tela de login do aplicativo, clique em "Esqueci minha senha" e siga as instruções para redefinir sua senha através do seu e-mail cadastrado.</p>
                         </div>
                     </div>
                     <div class="faq-item"> {# Nova pergunta #}

@@ -150,7 +150,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
               const SizedBox(height: 12),
               TextField(
                 controller: _verificationCodeController,
-                keyboardType: TextInputType.number,
+                keyboardType: TextInputType.text,
                 style: GoogleFonts.khula(fontSize: 18),
                 decoration: InputDecoration(
                   filled: true,
