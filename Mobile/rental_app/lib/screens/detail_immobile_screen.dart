@@ -471,7 +471,7 @@ class _DetailImmobileScreenState extends State<DetailImmobileScreen> {
                                         context,
                                         '/review',
                                         arguments: {
-                                          'reviewType': 'PROPERTY',
+                                          'reviewType': 'immobile',
                                           'targetId': immobile.idImmobile,
                                           'targetName': immobile.propertyType,
                                         },
@@ -494,7 +494,7 @@ class _DetailImmobileScreenState extends State<DetailImmobileScreen> {
                                       context,
                                       '/review',
                                       arguments: {
-                                        'reviewType': 'PROPERTY',
+                                        'reviewType': 'immobile',
                                         'targetId': immobile.idImmobile,
                                         'targetName': immobile.propertyType,
                                       },

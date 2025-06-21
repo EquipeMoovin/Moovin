@@ -16,7 +16,11 @@ class TenantProvider with ChangeNotifier {
   Future<void> fetchTenant() async {
     _isLoading = true;
     _error = null;
-    notifyListeners();
+
+    // 🚨 Evita notificações durante o build
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      notifyListeners();
+    });
 
     try {
       _tenant = await _apiService.fetchTenant();
@@ -24,7 +28,9 @@ class TenantProvider with ChangeNotifier {
       _error = e.toString();
     } finally {
       _isLoading = false;
-      notifyListeners();
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        notifyListeners();
+      });
     }
   }
 }

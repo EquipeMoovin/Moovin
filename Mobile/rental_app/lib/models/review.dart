@@ -7,6 +7,7 @@ class Review {
   final DateTime createdAt;
   final int targetObjectId;
   final String targetContentType; // Para identificar o tipo do objeto alvo
+  final String authorUsername;
 
   Review({
     required this.id,
@@ -17,6 +18,7 @@ class Review {
     required this.createdAt,
     required this.targetObjectId,
     required this.targetContentType,
+    required this.authorUsername,
   });
 
   factory Review.fromJson(Map<String, dynamic> json) {
@@ -29,6 +31,7 @@ class Review {
     createdAt: DateTime.parse(json['created_at'] as String),
     targetObjectId: json['object_id'] as int? ?? 0,
     targetContentType: json['content_type_str'] as String? ?? '',
+    authorUsername: json['author_username'] as String? ?? '',
   );
 }
 
@@ -41,6 +44,7 @@ class Review {
       'type': type,
       'object_id': targetObjectId,
       'content_type': targetContentType,
+      'author_username': authorUsername,
       // 'created_at': createdAt.toIso8601String(), // If you need to send this back
     };
   }

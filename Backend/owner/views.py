@@ -564,6 +564,7 @@ class OwnerManagementImmobileDetailView(PermissionRequiredMixin,TemplateView):
     
     def get_context_data(self, pk, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['has_permission'] = self.request.user.has_perm('subscriptions.has_active_subscription')
         try:
             immobile = Immobile.objects.get(id_immobile=pk)
             context['property'] = immobile

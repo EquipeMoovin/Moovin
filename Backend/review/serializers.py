@@ -4,9 +4,11 @@ from .models import Review
 from django.contrib.contenttypes.models import ContentType
 
 class ReviewSerializer(serializers.ModelSerializer):
+    author_username = serializers.CharField(source='author.username', read_only=True)
+
     class Meta:
         model = Review
-        fields = ['id', 'author', 'rating', 'comment', 'type', 'object_id', 'created_at']
+        fields = ['id', 'author', 'rating', 'comment', 'type', 'object_id', 'created_at','author_username']
         read_only_fields = ['author', 'created_at']
 
     def create(self, validated_data):

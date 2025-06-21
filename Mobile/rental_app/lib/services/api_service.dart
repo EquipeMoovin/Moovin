@@ -19,7 +19,7 @@ class ApiService {
   late Dio dio;
   final String _chatBase = '$apiBase/chat/conversations';
   final String _chatBaseMessage = '$apiBase/chat';
-
+  final String _reviewBase = '$apiBase/reviews';
 
   ApiService() {
     dio = Dio(BaseOptions(
@@ -76,7 +76,6 @@ class ApiService {
     return false;
   }
 
-  final String _reviewBase = '$apiBase/reviews';
   // ========================= TENANT =========================
 
   Future<Tenant> fetchTenant() async {
@@ -371,7 +370,7 @@ Future<List<Immobile>> fetchImmobile({
   }}
 //====== reviews
 Future<List<Review>> fetchReviews({required String type, required int targetId}) async {
-  final url = Uri.parse('$_reviewBase/reviews/by_object/?type=${type.toLowerCase()}&id=$targetId');
+  final url = '$_reviewBase/reviews/by_object/?type=${type.toLowerCase()}&id=$targetId';
   print('🔎 Fetching Reviews for target (type: $type, id: $targetId): $url');
 
   final token = await _secureStorage.read(key: 'access_token');
@@ -379,117 +378,100 @@ Future<List<Review>> fetchReviews({required String type, required int targetId})
     throw Exception('Token JWT não encontrado para buscar as avaliações.');
   }
 
-  final response = await http.get(
-    url,
-    headers: {
-      'Authorization': 'Bearer $token', // Adicione o header de autorização
-    },
-  );
+  try {
+    final response = await dio.get(
+      url,
+    );
 
-  print('📡 STATUS: ${response.statusCode}');
-  print('📦 BODY: ${response.body}');
-  if (response.statusCode == 200) {
-    final decodedBody = utf8.decode(response.bodyBytes);
-    final List<dynamic> jsonList = jsonDecode(decodedBody) as List<dynamic>; // Decodifique para List<dynamic>
-    print('✅ JSON List: $jsonList');
+    print('📡 STATUS: ${response.statusCode}');
+    print('📦 BODY: ${response.data}');
+
+    final List<dynamic> jsonList = response.data;
     return jsonList.map((json) => Review.fromJson(json as Map<String, dynamic>)).toList();
-  } else {
+  } catch (e) {
+    print('Erro ao buscar avaliações: $e');
     throw Exception('Failed to load reviews');
   }
 }
 
-  Future<Review> submitReview({
-    required int rating,
-    String? comment,
-    required String type,
-    required int targetId,
-    //required int authorId,
-  }) async {
-    final url = Uri.parse('$_reviewBase/reviews/');
-    print('📝 Submitting Review: $url');
-    print('type: $type');
+Future<Review> submitReview({
+  required int rating,
+  String? comment,
+  required String type,
+  required int targetId,
+}) async {
+  final url = '$_reviewBase/reviews/';
+  print('📝 Submitting Review: $url');
 
-    final token = await _secureStorage.read(key: 'access_token');
-  if (token == null) {
-    throw Exception('Token JWT não encontrado para criar a avaliação.');
-  }
+  
 
-    final Map<String, dynamic> body = {
-      'rating': rating,
-      'comment': comment,
-      'type': type,
-      'object_id': targetId,
-      //'author': authorId,
-    };
+  final body = {
+    'rating': rating,
+    'comment': comment,
+    'type': type,
+    'object_id': targetId,
+  };
 
-    print('📤 Sending Body: ${jsonEncode(body)}');
+  print('📤 Sending Body: $body');
 
-    final response = await http.post(
+  try {
+    final response = await dio.post(
       url,
-      headers: {'Content-Type': 'application/json',
-      'Authorization': 'Bearer $token',
-      },
-      
-      body: jsonEncode(body),
+      data: body,
     );
 
     print('📡 STATUS: ${response.statusCode}');
-    print('📦 BODY: ${response.body}');
+    print('📦 BODY: ${response.data}');
 
-    if (response.statusCode == 201) {
-      final decodedBody = utf8.decode(response.bodyBytes);
-      return Review.fromJson(jsonDecode(decodedBody));
-    } else {
-      throw Exception('Failed to submit review');
-    }
+    return Review.fromJson(response.data);
+  } catch (e) {
+    print('Erro ao enviar avaliação: $e');
+    throw Exception('Failed to submit review');
   }
-   Future<Map<String, dynamic>> fetchTargetDetails({required String type, required int id}) async {
-    Uri? url;
-    String baseUrl;
+}
 
-    if (type == 'TENANT') {
-      baseUrl = '$apiBase/tenants';
-      url = Uri.parse('$baseUrl/$id/');
-    } else if (type == 'OWNER') {
-      baseUrl = '$apiBase/owners'; // Ajuste se a URL base for diferente
-      url = Uri.parse('$baseUrl/$id/');
-    } else if (type == 'PROPERTY') {
-      baseUrl = '$apiBase/immobile'; // Ajuste se a URL base for diferente
-      url = Uri.parse('$baseUrl/$id/');
-    }
+Future<Map<String, dynamic>> fetchTargetDetails({required String type, required int id}) async {
+  String? url;
 
-    if (url == null) {
-      print('Tipo de objeto inválido para buscar detalhes.');
-      return {};
-    }
+  if (type == 'TENANT') {
+    url = '$apiBase/tenants/$id/';
+  } else if (type == 'OWNER') {
+    url = '$apiBase/owners/$id/';
+  } else if (type == 'PROPERTY') {
+    url = '$apiBase/immobile/$id/';
+  }
 
-    print('🔎 Fetching Target Details: $url');
+  if (url == null) {
+    print('Tipo de objeto inválido para buscar detalhes.');
+    return {};
+  }
 
-    try {
-      final response = await http.get(url);
-      print('📡 Target Details STATUS: ${response.statusCode}');
-      print('📦 Target Details BODY: ${response.body}');
+  print('🔎 Fetching Target Details: $url');
 
-      if (response.statusCode == 200) {
-        final decodedBody = utf8.decode(response.bodyBytes);
-        final dynamic responseJson = jsonDecode(decodedBody);
-        if (responseJson is List && responseJson.isNotEmpty) {
-          return responseJson.first as Map<String, dynamic>;
-        } else if (responseJson is Map<String, dynamic>) {
-          return responseJson;
-        } else {
-          print('Formato de resposta inesperado para detalhes do alvo.');
-          return {};
-        }
-      }else {
-        print('Falha ao carregar os detalhes do objeto: ${response.statusCode}');
+  try {
+    final response = await dio.get(url);
+
+    print('📡 STATUS: ${response.statusCode}');
+    print('📦 BODY: ${response.data}');
+
+    if (response.statusCode == 200) {
+      if (response.data is List && response.data.isNotEmpty) {
+        return response.data.first as Map<String, dynamic>;
+      } else if (response.data is Map<String, dynamic>) {
+        return response.data;
+      } else {
+        print('Formato de resposta inesperado.');
         return {};
       }
-    } catch (e) {
-      print('Erro de conexão ao carregar os detalhes do objeto: $e');
+    } else {
+      print('Falha ao carregar os detalhes: ${response.statusCode}');
       return {};
     }
+  } catch (e) {
+    print('Erro de conexão: $e');
+    return {};
   }
+}
 
   // chat
   Future<List<Conversation>> fetchConversations() async {

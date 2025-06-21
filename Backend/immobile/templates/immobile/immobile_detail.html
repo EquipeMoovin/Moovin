@@ -7,7 +7,7 @@
 
     <!-- Cabeçalho -->
     <div class="section-header">
-        <h3>{{property.property_type}}, {{property.city}} - {{property.state}}</h3>
+        <h3>{{ property.property_type }}, {{ property.city }} - {{ property.state }}</h3>
     </div>
 
     <!-- Mensagens de Sucesso/Erro -->
@@ -58,8 +58,12 @@
                 <p><strong class="strong-label">Piscina:</strong> {% if property and property.pool is not None %}{% if property.pool %} Sim {% else %} Não {% endif %}{% else %} Não informado {% endif %}</p>
                 <p><strong class="strong-label">Status:</strong> {% if property and property.is_active %} Ativo {% else %} Desativado {% endif %}</p>
                 <div class="action-buttons">
-                    <a href="{%url 'immobile_edit' property.id_immobile%}" class="action-btn edit-btn">Editar Imóvel</a>
-                    <a href="{%url 'rental-register' property.id_immobile%}" class="action-btn register-rental-btn">Registrar Aluguel</a>
+                    <a href="{% url 'immobile_edit' pk=property.id_immobile %}" class="action-btn edit-btn">Editar Imóvel</a>
+
+                    {% if has_permission %}
+                    <a href="{% url 'rental-register' property.id_immobile %}" class="action-btn register-rental-btn">Registrar Aluguel</a>
+                    {% endif %}
+
                     <form method="post" class="deactivate-form">
                         {% csrf_token %}
                         <button name="deactivate" class="action-btn deactivate-btn" {% if property.status == 'Available' %}disabled{% endif %}>
@@ -70,6 +74,7 @@
             </div>
         </div>
 
+          {% if has_permission %}
         <!-- Contato do Inquilino -->
         <div class="info-card">
             <h4>Contato do Inquilino</h4>
@@ -83,7 +88,6 @@
                 {% endif %}
             </div>
         </div>
-
         <!-- Documentos do Imóvel -->
         <div class="info-card">
             <h4>Documentos do Imóvel</h4>
@@ -108,6 +112,13 @@
             </div>
         </div>
 
+        <!-- Seção de Rendimentos -->
+        <div class="chart-card">
+            <h4>Rendimento Estimado (em R$)</h4>
+            <div class="chart-placeholder">Gráfico de Rendimento Estimado (Placeholder)</div>
+        </div>
+        {% endif %}
+
         <!-- Informações Adicionais -->
         <div class="additional-info">
             <p><strong class="strong-label">Permite Animais:</strong> {% if property and property.pet_friendly is not None %}{% if property.pet_friendly %} Sim {% else %} Não {% endif %}{% else %} Não informado {% endif %}</p>
@@ -116,14 +127,10 @@
             <p><strong class="strong-label">Mercado Próximo:</strong> {% if property and property.nearby_market is not None %}{% if property.nearby_market %} Sim {% else %} Não {% endif %}{% else %} Não informado {% endif %}</p>
         </div>
 
-        <!-- Gráfico -->
-        <div class="chart-card">
-            <h4>Rendimento Estimado (em R$)</h4>
-            <div class="chart-placeholder">Gráfico de Rendimento Estimado (Placeholder)</div>
-        </div>
     </div>
 
 </div>
+
 
 <style>
     body {

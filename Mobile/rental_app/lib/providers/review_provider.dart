@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/review.dart';
-import '../services/api_service.dart'; 
+import '../services/api_service.dart';
 
 class ReviewProvider with ChangeNotifier {
   List<Review> _reviews = [];
@@ -15,21 +15,25 @@ class ReviewProvider with ChangeNotifier {
 
   // Fetch reviews for a specific target (e.g., a property or a tenant)
   Future<void> fetchReviews({required String type, required int targetId}) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
+    if (!_isLoading) {
+      _isLoading = true;
+      _error = null;
+      notifyListeners(); // notifica mudança de estado inicial
+    }
 
     try {
-      _reviews = await _apiService.fetchReviews(type: type, targetId: targetId);
+      final fetchedReviews = await _apiService.fetchReviews(type: type, targetId: targetId);
+      _reviews = fetchedReviews;
     } catch (e) {
       _error = e.toString();
     } finally {
       _isLoading = false;
-      notifyListeners();
+      notifyListeners(); // notifica após finalização
     }
   }
 
-   Future<Map<String, dynamic>> fetchTargetDetails({required String type, required int id}) async {
+  // Fetch details of the review target (optional)
+  Future<Map<String, dynamic>> fetchTargetDetails({required String type, required int id}) async {
     return await _apiService.fetchTargetDetails(type: type, id: id);
   }
 
@@ -39,7 +43,7 @@ class ReviewProvider with ChangeNotifier {
     String? comment,
     required String type,
     required int targetId,
-    required int authorId, // Assuming you have the author's ID
+    required int authorId,
   }) async {
     _isLoading = true;
     _error = null;
@@ -51,9 +55,8 @@ class ReviewProvider with ChangeNotifier {
         comment: comment,
         type: type,
         targetId: targetId,
-        //authorId: authorId,
       );
-      _reviews.add(newReview); // Optionally add the new review to the list
+      _reviews.add(newReview);
     } catch (e) {
       _error = e.toString();
     } finally {
