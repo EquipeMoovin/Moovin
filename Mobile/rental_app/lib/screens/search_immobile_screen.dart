@@ -20,6 +20,9 @@ import 'notification_screen.dart';
 import 'chat_screen.dart'; 
 import '../providers/review_provider.dart';
 import 'unauthorized_screen.dart';
+
+import 'package:url_launcher/url_launcher.dart';
+
 class SearchImmobileScreen extends StatefulWidget {
   const SearchImmobileScreen({super.key});
 
@@ -470,7 +473,7 @@ class _SearchImmobileScreenState extends State<SearchImmobileScreen> {
         actions: [
           PopupMenuButton<String>(
             icon: const Icon(Icons.menu, color: Colors.white),
-            onSelected: (String result) {
+            onSelected: (String result) async {
               switch (result) {
                 case 'dashboard_proprietario':
                   if (_userType == 'Proprietario') {
@@ -484,8 +487,13 @@ class _SearchImmobileScreenState extends State<SearchImmobileScreen> {
                   print('Configurações selecionadas');
                   break;
                 case 'planos_assinaturas':
-                  print('Planos e Assinaturas selecionados');
-                  break;
+                   final Uri url = Uri.parse('https://moovin.onrender.com/api/owners/management/');
+                   if (await canLaunchUrl(url)) {
+                     await launchUrl(url, mode: LaunchMode.externalApplication); 
+                    } else {
+                     throw 'Não foi possível abrir o link: $url';
+                              }
+                              break;
                 case 'logout':
                   print('Logout selecionado');
                   Navigator.pushAndRemoveUntil(

@@ -79,7 +79,7 @@ class ApiService {
   // ========================= TENANT =========================
 
   Future<Tenant> fetchTenant() async {
-  final url = '$_tenantBase/profile/me/'; 
+  final url = '$_tenantBase/profile/profile/me/'; 
 
   print('🔎 Fetching Tenant: $url');
 

@@ -164,6 +164,12 @@ class LoginWebView(View):
 
             messages.error(request, "Senha incorreta.")
             return render(request, self.template_name)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['has_permission'] = self.request.user.has_perm('subscriptions.has_active_subscription')
+        
+        return context
         
 class LogoutWebView(View):
     template_name = 'login_web.html'
