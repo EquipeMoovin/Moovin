@@ -6,6 +6,7 @@ class ReviewProvider with ChangeNotifier {
   List<Review> _reviews = [];
   bool _isLoading = false;
   String? _error;
+  bool _disposed = false; // <- Adiciona essa flag
 
   List<Review> get reviews => _reviews;
   bool get isLoading => _isLoading;
@@ -13,12 +14,21 @@ class ReviewProvider with ChangeNotifier {
 
   final ApiService _apiService = ApiService();
 
-  // Fetch reviews for a specific target (e.g., a property or a tenant)
+  @override
+  void dispose() {
+    _disposed = true; // <- marca como descartado
+    super.dispose();
+  }
+
+  void safeNotify() {
+    if (!_disposed) notifyListeners();
+  }
+
   Future<void> fetchReviews({required String type, required int targetId}) async {
     if (!_isLoading) {
       _isLoading = true;
       _error = null;
-      notifyListeners(); // notifica mudança de estado inicial
+      safeNotify(); // <- usa safeNotify
     }
 
     try {
@@ -28,16 +38,14 @@ class ReviewProvider with ChangeNotifier {
       _error = e.toString();
     } finally {
       _isLoading = false;
-      notifyListeners(); // notifica após finalização
+      safeNotify(); // <- usa safeNotify
     }
   }
 
-  // Fetch details of the review target (optional)
   Future<Map<String, dynamic>> fetchTargetDetails({required String type, required int id}) async {
     return await _apiService.fetchTargetDetails(type: type, id: id);
   }
 
-  // Submit a new review
   Future<void> submitReview({
     required int rating,
     String? comment,
@@ -47,7 +55,7 @@ class ReviewProvider with ChangeNotifier {
   }) async {
     _isLoading = true;
     _error = null;
-    notifyListeners();
+    safeNotify();
 
     try {
       final newReview = await _apiService.submitReview(
@@ -61,7 +69,7 @@ class ReviewProvider with ChangeNotifier {
       _error = e.toString();
     } finally {
       _isLoading = false;
-      notifyListeners();
+      safeNotify();
     }
   }
 }

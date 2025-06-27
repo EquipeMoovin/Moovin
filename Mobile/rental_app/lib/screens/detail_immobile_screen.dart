@@ -289,59 +289,20 @@ class _DetailImmobileScreenState extends State<DetailImmobileScreen> {
                   height: 200,
                   child: Stack(
                     children: [
-                      PageView(
-                        children: immobile.photosBlob.map((photo) {
-                          return Image.memory(
-                            Uri.parse('data:${photo.contentType};base64,${photo.imageBase64}').data!.contentAsBytes(),
-                            width: double.infinity,
-                            height: double.infinity,
-                            fit: BoxFit.cover,
-                          );
-                        }).toList().isNotEmpty
-                            ? immobile.photosBlob.map((photo) {
-                                return Image.memory(
-                                  Uri.parse('data:${photo.contentType};base64,${photo.imageBase64}').data!.contentAsBytes(),
-                                  width: double.infinity,
-                                  height: double.infinity,
-                                  fit: BoxFit.contain,
-                                );
-                              }).toList()
-                            : [
-                                Container(
-                                  color: Colors.grey[300],
-                                  child: const Center(child: Icon(Icons.image_not_supported_outlined, size: 50)),
-                                )
-                              ],
-                      ),
-                      Positioned(
-                        bottom: 8,
-                        left: 8,
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              ...immobile.photosBlob.map((photo) {
-                                return Padding(
-                                  padding: const EdgeInsets.only(right: 4.0),
-                                  child: _buildThumbnail(photo.imageBase64, photo.contentType),
-                                );
-                              }).toList(),
-                              if (immobile.photosBlob.length > 3)
-                                Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                                  decoration: BoxDecoration(
-                                    color: Colors.black54,
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Text(
-                                    '+${immobile.photosBlob.length - 3}',
-                                    style: const TextStyle(color: Colors.white, fontSize: 12),
-                                  ),
-                                ),
-                            ],
-                          ),
+                      // Exibe apenas a primeira foto, se houver
+                      if (immobile.photosBlob.isNotEmpty)
+                        Image.memory(
+                          Uri.parse('data:${immobile.photosBlob.first.contentType};base64,${immobile.photosBlob.first.imageBase64}').data!.contentAsBytes(),
+                          width: double.infinity,
+                          height: double.infinity,
+                          fit: BoxFit.cover, // Preenche todo o espaço disponível
+                        )
+                      else
+                        Container(
+                          color: Colors.grey[300],
+                          child: const Center(child: Icon(Icons.image_not_supported_outlined, size: 50)),
                         ),
-                      ),
+                      // Ícone de estrela no canto superior direito
                       const Positioned(
                         top: 8,
                         right: 8,

@@ -50,11 +50,11 @@
             <span class="app-name">Moovin</span> {# Texto "Moovin" adicionado aqui #}
         </div>
         <div>
-              {% if has_permission %}
+             
                 <a href="#">Sobre</a>
                 <a href="{% url 'owner-management'%}">Gerenciamento de imóveis</a>
                 <a href="{%url 'owner_statistics'%}">Relatórios e outros</a>
-              {%endif%}
+       
             {% if user.is_authenticated %}
                 <form method="post" action="{% url 'logout-web' %}" style="display: inline;">
                     {% csrf_token %}
