@@ -65,5 +65,5 @@ class EmailVerificationCode(models.Model):
 
     def is_expired(self):
         now = timezone.now()
-        expiration_time = self.created_at + datetime.timedelta(hours=24) 
+        expiration_time = self.created_at + datetime.timedelta(minutes=15) 
         return now > expiration_time

@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
       _errorMessage = null; 
     });
 
-    final apiService = ApiService(baseUrl: 'https://moovin.onrender.com/api'); //url de emulador
+    final apiService = ApiService(baseUrl: 'http://127.0.0.1:8000/api'); //url de emulador
 
     try {
     String email = _emailController.text;

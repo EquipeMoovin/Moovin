@@ -199,7 +199,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
  Future<void> _handleRegistration({required bool isOwner}) async {
     if (_formKey.currentState?.validate() ?? false) {
       final String email = _emailController.text;
-      final apiService = ApiService(baseUrl: 'https://moovin.onrender.com/api'); //URL emulador
+      final apiService = ApiService(baseUrl: 'http://127.0.0.1:8000/api'); //URL emulador
 
       try {
         final response = await apiService.requestEmailVerification(email);

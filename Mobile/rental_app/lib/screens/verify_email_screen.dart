@@ -15,7 +15,17 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
   final TextEditingController _verificationCodeController = TextEditingController();
   bool _isLoading = false;
   String? _errorMessage;
-  final ApiService _apiService = ApiService(baseUrl: 'https://moovin.onrender.com/api');
+  final ApiService _apiService = ApiService(baseUrl: 'http://127.0.0.1:8000/api');
+
+  // Variável para controlar o estado de carregamento do botão de reenviar
+  bool _isResendingCode = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Você pode adicionar aqui uma lógica para iniciar um temporizador
+    // ou desabilitar o botão de reenviar por alguns segundos após a tela carregar.
+  }
 
   Future<void> _verifyCode() async {
     setState(() {
@@ -24,7 +34,8 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
     });
 
     final code = _verificationCodeController.text;
-    final arguments = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+    // Usar widget.arguments para acessar os argumentos passados para a tela
+    final arguments = widget.arguments ?? ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
     final email = arguments?['email'];
     final name = arguments?['name'];
     final password = arguments?['password'];
@@ -100,9 +111,53 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
     }
   }
 
+  // Novo método para reenviar o código
+  Future<void> _resendCode() async {
+    setState(() {
+      _isResendingCode = true; // Ativa o estado de carregamento do botão de reenviar
+      _errorMessage = null; // Limpa qualquer mensagem de erro anterior
+    });
+
+    // Usar widget.arguments para acessar os argumentos passados para a tela
+    final arguments = widget.arguments ?? ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+    final email = arguments?['email'];
+
+    if (email != null) {
+      try {
+        await _apiService.requestEmailVerification(email);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Novo código enviado para seu e-mail!'),
+            backgroundColor: Colors.green,
+          ),
+        );
+      } catch (e) {
+        setState(() {
+          _errorMessage = 'Falha ao reenviar o código. Tente novamente.';
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Erro ao reenviar código: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      } finally {
+        setState(() {
+          _isResendingCode = false; // Desativa o estado de carregamento
+        });
+      }
+    } else {
+      setState(() {
+        _isResendingCode = false;
+        _errorMessage = 'Não foi possível reenviar o código: e-mail não encontrado.';
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final arguments = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+    // Usar widget.arguments para acessar os argumentos passados para a tela
+    final arguments = widget.arguments ?? ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
     final email = arguments?['email'] ?? 'seu_email@exemplo.com';
 
     return Scaffold(
@@ -192,18 +247,16 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
               const SizedBox(height: 16),
               Center(
                 child: TextButton(
-                  onPressed: () {
-                    // Adicionar lógica para reenviar o código
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Reenviando código... (funcionalidade a ser implementada)'),
-                      ),
-                    );
-                  },
-                  child: Text(
-                    'Reenviar código',
-                    style: GoogleFonts.khula(color: const Color(0xFF6D472F), fontWeight: FontWeight.bold),
-                  ),
+                  onPressed: _isResendingCode || _isLoading ? null : _resendCode, // Desabilita se já estiver carregando ou reenviando
+                  child: _isResendingCode
+                      ? const CircularProgressIndicator(
+                          strokeWidth: 2, // Torna o indicador menor
+                          valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF6D472F)),
+                        )
+                      : Text(
+                          'Reenviar código',
+                          style: GoogleFonts.khula(color: const Color(0xFF6D472F), fontWeight: FontWeight.bold),
+                        ),
                 ),
               ),
             ],

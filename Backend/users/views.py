@@ -85,8 +85,11 @@ class RequestEmailVerification(APIView):
             # Salvar o código de verificação (com um tempo de expiração)
             EmailVerificationCode.objects.update_or_create(
                 email=email,
-                created_at = timezone.now(),
-                defaults={'code': verification_code}
+                
+                defaults={
+                    'code': verification_code,
+                    'created_at': timezone.now() # This will be updated/set on creation
+                }
             )
 
             # Enviar o e-mail
