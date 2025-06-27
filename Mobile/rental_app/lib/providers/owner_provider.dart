@@ -25,8 +25,10 @@ class OwnerProvider with ChangeNotifier {
     try {
       if (immobileId != null) {
         _owner = await _apiService.fetchOwnerByImmobile(immobileId);
+        print('1');
       } else {
         _owner = await _apiService.fetchCurrentOwner();
+         print('2');
       }
     } catch (e) {
       _error = e.toString();

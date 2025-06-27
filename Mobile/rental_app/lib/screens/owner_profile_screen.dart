@@ -354,14 +354,19 @@ class _OwnerProfileScreenState extends State<OwnerProfileScreen> {
                                           return Card(
                                             margin: const EdgeInsets.only(bottom: 10),
                                             child: ListTile(
-                                              leading: imageUrl != null && imageUrl.isNotEmpty
-                                                  ? Image.network(imageUrl, width: 60, height: 60, fit: BoxFit.cover)
-                                                  : Container(
-                                                      width: 60,
-                                                      height: 60,
-                                                      color: Colors.grey[300],
-                                                      child: const Icon(Icons.home, size: 32),
-                                                    ),
+                                              leading: p.photosBlob.isNotEmpty
+                                                        ? Image.memory(
+                                                            base64Decode(p.photosBlob.first.imageBase64.split(',').last),
+                                                            width: 60,
+                                                            height: 60,
+                                                            fit: BoxFit.cover,
+                                                          )
+                                                        : Container(
+                                                            width: 60,
+                                                            height: 60,
+                                                            color: Colors.grey[300],
+                                                            child: const Icon(Icons.home, size: 32),
+                                                          ),
                                               title: Text('${p.propertyType} em ${p.city}',
                                                   style: const TextStyle(fontWeight: FontWeight.bold)),
                                               subtitle: Text('${p.street}, ${p.number ?? 'S/N'}'),

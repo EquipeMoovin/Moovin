@@ -10,14 +10,12 @@ class OwnerImmobilesScreen extends StatelessWidget {
   const OwnerImmobilesScreen({Key? key}) : super(key: key);
 
   Future<void> _launchRegisterUrl() async {
-    const url = 'https://moovin.onrender.com/api/immobile/register/part1/'; 
-
+    const url = 'https://moovin.onrender.com/api/immobile/register/part1/';
     final uri = Uri.parse(url);
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri, mode: LaunchMode.externalApplication);
     } else {
-      // Handle error (e.g., show a snackbar)
-      throw 'Could not launch $url';
+      throw 'Não foi possível abrir $url';
     }
   }
 
@@ -50,44 +48,57 @@ class OwnerImmobilesScreen extends StatelessWidget {
                         itemCount: immobiles.length,
                         itemBuilder: (context, index) {
                           final immobile = immobiles[index];
-                          final imageUrl = immobile.photosBlob.isNotEmpty
-                              ? immobile.photosBlob.first.imageBase64
-                              : null;
 
                           return Card(
                             margin: const EdgeInsets.symmetric(vertical: 8),
-                            child: ListTile(
-                              leading: imageUrl != null && imageUrl.isNotEmpty
-                                  ? Image.network(
-                                      imageUrl,
-                                      width: 60,
-                                      height: 60,
-                                      fit: BoxFit.cover,
-                                    )
-                                  : Container(
-                                      width: 60,
-                                      height: 60,
-                                      color: Colors.grey[300],
-                                      child: const Icon(Icons.home, size: 32),
-                                    ),
-                              title: Text(
-                                '${immobile.propertyType} em ${immobile.city}',
-                                style: const TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              subtitle:
-                                  Text('${immobile.street}, ${immobile.number ?? 'S/N'}'),
-                              trailing: const Icon(Icons.edit, color: Colors.green),
-                              onTap: () async {
-                                final updated = await Navigator.push<bool>(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => EditImmobileScreen(immobile: immobile),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  // Ícone imóvel
+                                  Container(
+                                    width: 60,
+                                    height: 60,
+                                    color: Colors.grey[300],
+                                    child: const Icon(Icons.home, size: 32),
                                   ),
-                                );
-                                if (updated == true) {
-                                  await provider.fetchOwner(); // Recarrega
-                                }
-                              },
+                                  const SizedBox(width: 12),
+                                  // Título e subtítulo
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          '${immobile.propertyType} em ${immobile.city}',
+                                          style: const TextStyle(fontWeight: FontWeight.bold),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        const SizedBox(height: 4),
+                                        Text(
+                                          '${immobile.street}, ${immobile.number ?? 'S/N'}',
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(width: 12),
+                                  // Botão de editar
+                                  IconButton(
+                                    icon: const Icon(Icons.edit, color: Colors.green),
+                                    onPressed: () async {
+                                      final updated = await Navigator.push<bool>(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (_) => EditImmobileScreen(immobile: immobile),
+                                        ),
+                                      );
+                                      if (updated == true) {
+                                        await provider.fetchOwner();
+                                      }
+                                    },
+                                  ),
+                                ],
+                              ),
                             ),
                           );
                         },
