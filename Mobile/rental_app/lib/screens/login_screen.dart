@@ -33,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     final result = await apiService.loginUser(email, password);
 
-    print('Resultado do login: $result');
+
 
     if (result['access'] != null) {
 
@@ -60,9 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
         await _secureStorage.write(key: 'user_type', value: userType);
         await _secureStorage.write(key: 'user_id', value: userId);
 
-      } else {
-      
-        print('Token não encontrado');
+      } else {// print removido por segurança
        
       }
 
@@ -80,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
       throw Exception('Token de acesso não encontrado.');
     }
   } catch (e) {
-    print('Erro ao fazer login: $e');
+
 
     setState(() {
       _errorMessage = 'Erro ao fazer login. Tente novamente.';

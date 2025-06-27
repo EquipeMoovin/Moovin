@@ -69,8 +69,7 @@ class ApiService {
         await _secureStorage.write(key: 'access_token', value: response.data['access']);
         return true;
       }
-    } catch (e) {
-      print('Erro ao renovar token: $e');
+    } catch (e) {// print removido por segurança
     }
 
     return false;
@@ -79,68 +78,52 @@ class ApiService {
   // ========================= TENANT =========================
 
   Future<Tenant> fetchTenant() async {
-  final url = '$_tenantBase/profile/profile/me/'; 
-
-  print('🔎 Fetching Tenant: $url');
+  final url = '$_tenantBase/profile/profile/me/'; // print removido por segurança
 
   try {
-    final response = await dio.get(url); // token será adicionado pelo interceptor
-
-    print('📡 STATUS: ${response.statusCode}');
-    print('📦 BODY: ${response.data}');
+    final response = await dio.get(url); // token será adicionado pelo interceptor// print removido por segurança// print removido por segurança
 
     if (response.statusCode == 200) {
       return Tenant.fromJson(response.data); // Já vem decodificado em JSON
     } else {
       throw Exception('Erro ao carregar perfil do tenant');
     }
-  } on DioException catch (e) {
-    print('❌ Erro na requisição: ${e.response?.data}');
+  } on DioException catch (e) {// print removido por segurança
     throw Exception('Erro na requisição: ${e.message}');
   }
   }
 
 
   Future<Tenant> updateTenant(Map<String, dynamic> data) async {
-  final url = '$_tenantBase/profile/me/update-profile/';
-  print('✏️ Updating Tenant: $url');
+  final url = '$_tenantBase/profile/me/update-profile/';// print removido por segurança
 
   try {
     final response = await dio.patch(
       url,
       data: data, 
-    );
-
-    print('📡 STATUS: ${response.statusCode}');
-    print('📦 BODY: ${response.data}');
+    );// print removido por segurança// print removido por segurança
 
     if (response.statusCode == 200) {
       return Tenant.fromJson(response.data); 
     } else {
       throw Exception('Erro ao atualizar o perfil do tenant');
     }
-  } on DioException catch (e) {
-    print('❌ Erro na requisição: ${e.response?.data}');
+  } on DioException catch (e) {// print removido por segurança
     throw Exception('Erro na requisição: ${e.message}');
   }
 }
 
 
   Future<void> favoriteProperty(int tenantId) async {
-  final url = '$_tenantBase/profile/$tenantId/favorite_property/';
-  print('⭐ Favoriting property for Tenant: $url');
+  final url = '$_tenantBase/profile/$tenantId/favorite_property/';// print removido por segurança
 
   try {
-    final response = await dio.post(url); 
-
-    print('📡 STATUS: ${response.statusCode}');
-    print('📦 BODY: ${response.data}');
+    final response = await dio.post(url); // print removido por segurança// print removido por segurança
 
     if (response.statusCode != 200) {
       throw Exception('Erro ao favoritar o imóvel');
     }
-  } on DioException catch (e) {
-    print('❌ Erro na requisição: ${e.response?.data}');
+  } on DioException catch (e) {// print removido por segurança
     throw Exception('Erro ao favoritar o imóvel: ${e.message}');
   }
 }
@@ -149,8 +132,7 @@ class ApiService {
   // ========================= OWNER =========================
 
   Future<Owner> fetchCurrentOwner() async {
-    final url ='$_ownerBase/me/';
-    print('🔎 Fetching Owner (self): $url');
+    final url ='$_ownerBase/me/';// print removido por segurança
 
     final token = await _secureStorage.read(key: 'access_token');
 
@@ -158,10 +140,7 @@ class ApiService {
       throw Exception('Token JWT não encontrado.');
     }
 
-    final response = await dio.get(url);
-
-    print('📡 STATUS: ${response.statusCode}');
-    print('📦 BODY: ${response.data}');
+    final response = await dio.get(url);// print removido por segurança// print removido por segurança
 
     if (response.statusCode == 200) {
       return Owner.fromJson(response.data);
@@ -170,8 +149,7 @@ class ApiService {
     }
   }
   Future<Owner> fetchOwnerByImmobile(int immobileId) async {
-  final url = '$_ownerBase/$immobileId/getbyimmobile';
-  print('🔎 Fetching Owner (self): $url');
+  final url = '$_ownerBase/$immobileId/getbyimmobile';// print removido por segurança
 
   final token = await _secureStorage.read(key: 'access_token');
 
@@ -187,10 +165,7 @@ class ApiService {
         receiveTimeout: const Duration(seconds: 10),
         sendTimeout: const Duration(seconds: 10),
       ),
-    );
-
-    print('📡 STATUS: ${response.statusCode}');
-    print('📦 BODY: ${response.data}');
+    );// print removido por segurança// print removido por segurança
 
     if (response.statusCode == 200) {
       return Owner.fromJson(response.data);
@@ -226,10 +201,7 @@ class ApiService {
     final response = await dio.patch(
       '$_ownerBase/me/update-profile/',
       data: data,
-    );
-
-    print('📡 STATUS: ${response.statusCode}');
-    print('📦 BODY: ${response.data}');
+    );// print removido por segurança// print removido por segurança
 
     if (response.statusCode == 200) {
       return Owner.fromJson(response.data);
@@ -241,14 +213,10 @@ class ApiService {
 
   // ========================= IMMOBILE =========================
  Future<Immobile> fetchOneImmobile(int idImmobile) async {
-  final url = '$_immobileBase/$idImmobile/';
-  print('🔎 Fetching Immobile: $url');
+  final url = '$_immobileBase/$idImmobile/';// print removido por segurança
 
   try {
-    final response = await dio.get(url);
-
-    print('📡 STATUS: ${response.statusCode}');
-    print('📦 IMMOBILE BODY: ${response.data}');
+    final response = await dio.get(url);// print removido por segurança// print removido por segurança
 
     if (response.statusCode == 200) {
       return Immobile.fromJson(response.data);
@@ -257,22 +225,17 @@ class ApiService {
     } else {
       throw Exception('Erro ao carregar os detalhes do imóvel');
     }
-  } on DioException catch (e) {
-    print('❌ Erro na requisição: ${e.response?.data}');
+  } on DioException catch (e) {// print removido por segurança
     throw Exception('Erro na requisição: ${e.message}');
   }
 }
 
 
 Future<ImmobilePhoto> fetchImageBlob(int photoId) async {
-  final url = '$_photoBlobBase/$photoId/';
-  print('🔎 Fetching Image Blob: $url');
+  final url = '$_photoBlobBase/$photoId/';// print removido por segurança
 
   try {
-    final response = await dio.get(url);
-
-    print('📡 STATUS: ${response.statusCode}');
-    print('📦 IMAGE BLOB BODY: ${response.data}');
+    final response = await dio.get(url);// print removido por segurança// print removido por segurança
 
     if (response.statusCode == 200) {
       return ImmobilePhoto.fromJson(response.data);
@@ -281,8 +244,7 @@ Future<ImmobilePhoto> fetchImageBlob(int photoId) async {
     } else {
       throw Exception('Erro ao carregar blob da imagem com ID $photoId');
     }
-  } on DioException catch (e) {
-    print('❌ Erro na requisição: ${e.response?.data}');
+  } on DioException catch (e) {// print removido por segurança
     throw Exception('Erro na requisição: ${e.message}');
   }
 }
@@ -303,10 +265,7 @@ Future<ImmobilePhoto> fetchImageBlob(int photoId) async {
           'Authorization': 'Bearer $token',  // ✅ Enviando token no header
         },
       ),
-    );
-
-    print('📡 STATUS: ${response.statusCode}');
-    print('📦 BODY: ${response.data}');
+    );// print removido por segurança// print removido por segurança
 
     if (response.statusCode == null || response.statusCode! < 200 || response.statusCode! >= 300) {
       throw Exception('Falha ao atualizar imóvel. Código: ${response.statusCode}');
@@ -316,8 +275,7 @@ Future<ImmobilePhoto> fetchImageBlob(int photoId) async {
     // Supondo que exista Immobile.fromJson:
     return Immobile.fromJson(response.data);
     
-  } on DioException catch (e) {
-    print('❌ Erro ao atualizar imóvel: ${e.response?.data}');
+  } on DioException catch (e) {// print removido por segurança
     throw Exception('Erro na requisição: ${e.message}');
   }
 }
@@ -356,8 +314,7 @@ Future<List<Immobile>> fetchImmobile({
     if (city != null) 'city': city,
   };
 
-  final uri = Uri.parse(_immobileBase).replace(queryParameters: queryParams);
-  print('🔎 Fetching Immobiles: $uri');
+  final uri = Uri.parse(_immobileBase).replace(queryParameters: queryParams);// print removido por segurança
 
  
     final response = await dio.getUri(uri);
@@ -370,8 +327,7 @@ Future<List<Immobile>> fetchImmobile({
   }}
 //====== reviews
 Future<List<Review>> fetchReviews({required String type, required int targetId}) async {
-  final url = '$_reviewBase/reviews/by_object/?type=${type.toLowerCase()}&id=$targetId';
-  print('🔎 Fetching Reviews for target (type: $type, id: $targetId): $url');
+  final url = '$_reviewBase/reviews/by_object/?type=${type.toLowerCase()}&id=$targetId';// print removido por segurança
 
   final token = await _secureStorage.read(key: 'access_token');
   if (token == null) {
@@ -381,15 +337,11 @@ Future<List<Review>> fetchReviews({required String type, required int targetId})
   try {
     final response = await dio.get(
       url,
-    );
-
-    print('📡 STATUS: ${response.statusCode}');
-    print('📦 BODY: ${response.data}');
+    );// print removido por segurança// print removido por segurança
 
     final List<dynamic> jsonList = response.data;
     return jsonList.map((json) => Review.fromJson(json as Map<String, dynamic>)).toList();
-  } catch (e) {
-    print('Erro ao buscar avaliações: $e');
+  } catch (e) {// print removido por segurança
     throw Exception('Failed to load reviews');
   }
 }
@@ -400,8 +352,7 @@ Future<Review> submitReview({
   required String type,
   required int targetId,
 }) async {
-  final url = '$_reviewBase/reviews/';
-  print('📝 Submitting Review: $url');
+  final url = '$_reviewBase/reviews/';// print removido por segurança
 
   
 
@@ -410,22 +361,16 @@ Future<Review> submitReview({
     'comment': comment,
     'type': type,
     'object_id': targetId,
-  };
-
-  print('📤 Sending Body: $body');
+  };// print removido por segurança
 
   try {
     final response = await dio.post(
       url,
       data: body,
-    );
-
-    print('📡 STATUS: ${response.statusCode}');
-    print('📦 BODY: ${response.data}');
+    );// print removido por segurança// print removido por segurança
 
     return Review.fromJson(response.data);
-  } catch (e) {
-    print('Erro ao enviar avaliação: $e');
+  } catch (e) {// print removido por segurança
     throw Exception('Failed to submit review');
   }
 }
@@ -441,34 +386,25 @@ Future<Map<String, dynamic>> fetchTargetDetails({required String type, required 
     url = '$apiBase/immobile/$id/';
   }
 
-  if (url == null) {
-    print('Tipo de objeto inválido para buscar detalhes.');
+  if (url == null) {// print removido por segurança
     return {};
-  }
-
-  print('🔎 Fetching Target Details: $url');
+  }// print removido por segurança
 
   try {
-    final response = await dio.get(url);
-
-    print('📡 STATUS: ${response.statusCode}');
-    print('📦 BODY: ${response.data}');
+    final response = await dio.get(url);// print removido por segurança// print removido por segurança
 
     if (response.statusCode == 200) {
       if (response.data is List && response.data.isNotEmpty) {
         return response.data.first as Map<String, dynamic>;
       } else if (response.data is Map<String, dynamic>) {
         return response.data;
-      } else {
-        print('Formato de resposta inesperado.');
+      } else {// print removido por segurança
         return {};
       }
-    } else {
-      print('Falha ao carregar os detalhes: ${response.statusCode}');
+    } else {// print removido por segurança
       return {};
     }
-  } catch (e) {
-    print('Erro de conexão: $e');
+  } catch (e) {// print removido por segurança
     return {};
   }
 }

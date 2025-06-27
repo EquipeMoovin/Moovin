@@ -21,8 +21,7 @@ class CreateReviewScreen extends StatefulWidget {
 class _CreateReviewScreenState extends State<CreateReviewScreen> {
   @override
   void initState() {
-    super.initState();
-    print('CreateReviewScreen - targetId: ${widget.targetId}, reviewType: ${widget.reviewType}');
+    super.initState();// print removido por segurança
     // ... outras inicializações
   }
   int _rating = 0;

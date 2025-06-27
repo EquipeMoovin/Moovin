@@ -209,8 +209,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               content: Text('Um código de verificação foi enviado para o seu e-mail.'),
               backgroundColor: Colors.blue,
             ),
-          );
-          print('Email sendo passado para VerifyEmailScreen: ${_emailController.text}');
+          );// print removido por segurança
           Navigator.pushNamed(
             context,
             '/verify-email', // Nova rota para a tela de verificação

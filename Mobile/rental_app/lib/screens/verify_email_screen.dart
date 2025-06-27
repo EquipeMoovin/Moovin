@@ -28,14 +28,10 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
     final email = arguments?['email'];
     final name = arguments?['name'];
     final password = arguments?['password'];
-    final isOwner = arguments?['isOwner'];
-
-    print('Email para verificação: $email');
-    print('Código digitado: $code');
+    final isOwner = arguments?['isOwner'];// print removido por segurança// print removido por segurança
 
     if (email != null && code.isNotEmpty) {
-      final isCodeValid = await _apiService.verifyEmailCode(email, code);
-      print('Resultado da verificação da API: $isCodeValid');
+      final isCodeValid = await _apiService.verifyEmailCode(email, code);// print removido por segurança
       setState(() {
         _isLoading = false;
       });

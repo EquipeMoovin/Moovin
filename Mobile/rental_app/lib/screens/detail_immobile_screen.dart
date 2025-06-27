@@ -390,8 +390,7 @@ class _DetailImmobileScreenState extends State<DetailImmobileScreen> {
 
                           if (reviewProvider.isLoading) {
                             return const CircularProgressIndicator();
-                          }
-                          print('Reviews: ${reviewProvider.reviews}');
+                          }// print removido por segurança
                           final reviews = reviewProvider.reviews;
                           double averageRating = 0;
 

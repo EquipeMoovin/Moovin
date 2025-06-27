@@ -42,10 +42,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final provider = Provider.of<NotificationProvider>(context, listen: false);
-      provider.fetchNotifications().then((_) {
-        print('🔍 Notificações carregadas: ${provider.notifications.length}');
-      }).catchError((error) {
-        print('❌ Erro ao carregar notificações: $error');
+      provider.fetchNotifications().then((_) {// print removido por segurança
+      }).catchError((error) {// print removido por segurança
       });
     });
   }
