@@ -2,7 +2,7 @@
 
 ## 📋 Sumário
 
-- [📌 Descrição do Projeto](#📌-descrição-do-projeto)
+- [📌 Descrição do Projeto](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-descri%C3%A7%C3%A3o-do-projeto)
 - [🧠 Disciplina](#🧠-disciplina)
 - [👥 Integrantes](#👥-integrantes)
 - [🔗 Links Importantes](#🔗-links-importantes)
