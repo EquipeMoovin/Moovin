@@ -1,11 +1,14 @@
 # Moovin
 
+![Logo Moovin](Backend/static/moovin-logo.png)
+
+
 ## 📋 Sumário
 
 - [📌 Descrição do Projeto](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-descri%C3%A7%C3%A3o-do-projeto)
 - [🧠 Disciplina](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-disciplina)
-- [👥 Integrantes]https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-integrantes
-- [🔗 Links Importantes]https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-links-importantes
+- [👥 Integrantes](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-integrantes)
+- [🔗 Links Importantes](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-links-importantes)
 - [🎯 Escopo](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-escopo)
   - [📝 Introdução](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-introdu%C3%A7%C3%A3o)
   - [🎯 Objetivo](#🎯-objetivo)
@@ -51,11 +54,9 @@ Universidade: Universidade Federal do Tocantins
 ---
 
 ## 🔗 Links Importantes
-- Repositório do projeto: [link aqui]
-- Documentação: [link aqui]
-- Protótipo no Figma: [link aqui]
-- Apresentações ou relatórios: [link aqui]
-- APK: [link aqui]
+- Documentação: [link aqui](https://github.com/EquipeMoovin/Moovin/tree/main/docs)
+- Apresentações ou relatórios: [link aqui](https://github.com/EquipeMoovin/Moovin/tree/main/docs/apresenta%C3%A7%C3%B5es)
+- APK: [link aqui](https://github.com/EquipeMoovin/Moovin/blob/main/Backend/static/apks/moovin.apk)
 ---
 ## 🎯 Escopo
 
