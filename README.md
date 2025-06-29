@@ -29,7 +29,7 @@ Universidade: Universidade Federal do Tocantins
 - Documentação: [link aqui]
 - Protótipo no Figma: [link aqui]
 - Apresentações ou relatórios: [link aqui]
-
+- APK: [link aqui]
 ---
 ## 🎯 Escopo
 
