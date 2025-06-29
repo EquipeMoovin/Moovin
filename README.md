@@ -1,5 +1,31 @@
 # Moovin
 
+## 📋 Sumário
+
+- [📌 Descrição do Projeto](#📌-descrição-do-projeto)
+- [🧠 Disciplina](#🧠-disciplina)
+- [👥 Integrantes](#👥-integrantes)
+- [🔗 Links Importantes](#🔗-links-importantes)
+- [🎯 Escopo](#🎯-escopo)
+  - [📝 Introdução](#📝-introdução)
+  - [🎯 Objetivo](#🎯-objetivo)
+  - [✅ Requisitos Funcionais](#✅-requisitos-funcionais)
+  - [💎 Funcionalidades Premium – Proprietário](#💎-funcionalidades-premium-–-proprietário)
+  - [💎 Funcionalidades Premium – Inquilino](#💎-funcionalidades-premium-–-inquilino)
+  - [💰 Fontes de Receita](#💰-fontes-de-receita)
+  - [🛠️ Tecnologias Utilizadas](#🛠️-tecnologias-utilizadas)
+  - [🧩 Observações Finais](#🧩-observações-finais)
+- [🏃‍♂️ Sprints](#🏃‍♂️-sprints)
+  - [📅 Sprint 1 – Modelagem do Banco e Funcionalidades Básicas](#📅-sprint-1-–-modelagem-do-banco-e-funcionalidades-básicas)
+  - [📅 Sprint 2 – Gerenciamento e detalhamento de Imóveis, Criação de Perfis e Avaliações](#📅-sprint-2-–-gerenciamento-e-detalhamento-de-imóveis-criação-de-perfis-e-avaliações)
+  - [📅 Sprint 3 – Notificações, Planos Premium e Melhorias de Usabilidade](#📅-sprint-3-–-notificações-planos-premium-e-melhorias-de-usabilidade)
+  - [📅 Sprint 4 – Integrações Críticas e Comunicação entre Usuários](#📅-sprint-4-–-integrações-críticas-e-comunicação-entre-usuários)
+  - [📅 Sprint 5 – Melhorias Visuais, Avaliações e Funcionalidades de Perfil](#📅-sprint-5-–-melhorias-visuais-avaliações-e-funcionalidades-de-perfil)
+- [🚀 MVP (Produto Mínimo Viável)](#🚀-mvp-produto-mínimo-viável)
+- [🧪 Protótipos](#🧪-protótipos)
+
+
+
 ## 📌 Descrição do Projeto
 Moovin visa conectar locatários e inquilinos, proporcionando um ambiente seguro para a busca, anúncio e gerenciamento de imóveis para aluguel. Além disso, oferecerá funcionalidades adicionais para facilitar a administração dos contratos e aprimorar a experiência do usuário. O compromisso com a segurança se reflete na verificação de perfis e autenticação de usuários, a transparência será promovida por meio de avaliações e relatórios detalhados, e a eficiência será garantida com filtros avançados, notificações inteligentes e comunicação ágil.
 
