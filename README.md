@@ -3,11 +3,11 @@
 ## 📋 Sumário
 
 - [📌 Descrição do Projeto](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-descri%C3%A7%C3%A3o-do-projeto)
-- [🧠 Disciplina](#🧠-disciplina)
-- [👥 Integrantes](#👥-integrantes)
-- [🔗 Links Importantes](#🔗-links-importantes)
-- [🎯 Escopo](#🎯-escopo)
-  - [📝 Introdução](#📝-introdução)
+- [🧠 Disciplina](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-disciplina)
+- [👥 Integrantes]https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-integrantes
+- [🔗 Links Importantes]https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-links-importantes
+- [🎯 Escopo](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-escopo)
+  - [📝 Introdução](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-introdu%C3%A7%C3%A3o)
   - [🎯 Objetivo](#🎯-objetivo)
   - [✅ Requisitos Funcionais](#✅-requisitos-funcionais)
   - [💎 Funcionalidades Premium – Proprietário](#💎-funcionalidades-premium-–-proprietário)
@@ -15,13 +15,13 @@
   - [💰 Fontes de Receita](#💰-fontes-de-receita)
   - [🛠️ Tecnologias Utilizadas](#🛠️-tecnologias-utilizadas)
   - [🧩 Observações Finais](#🧩-observações-finais)
-- [🏃‍♂️ Sprints](#🏃‍♂️-sprints)
-  - [📅 Sprint 1 – Modelagem do Banco e Funcionalidades Básicas](#📅-sprint-1-–-modelagem-do-banco-e-funcionalidades-básicas)
-  - [📅 Sprint 2 – Gerenciamento e detalhamento de Imóveis, Criação de Perfis e Avaliações](#📅-sprint-2-–-gerenciamento-e-detalhamento-de-imóveis-criação-de-perfis-e-avaliações)
-  - [📅 Sprint 3 – Notificações, Planos Premium e Melhorias de Usabilidade](#📅-sprint-3-–-notificações-planos-premium-e-melhorias-de-usabilidade)
-  - [📅 Sprint 4 – Integrações Críticas e Comunicação entre Usuários](#📅-sprint-4-–-integrações-críticas-e-comunicação-entre-usuários)
-  - [📅 Sprint 5 – Melhorias Visuais, Avaliações e Funcionalidades de Perfil](#📅-sprint-5-–-melhorias-visuais-avaliações-e-funcionalidades-de-perfil)
-- [🚀 MVP (Produto Mínimo Viável)](#🚀-mvp-produto-mínimo-viável)
+- [🏃‍♂️ Sprints](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#%EF%B8%8F-sprints)
+  - [📅 Sprint 1 – Modelagem do Banco e Funcionalidades Básicas](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-sprint-1--modelagem-do-banco-e-funcionalidades-b%C3%A1sicas)
+  - [📅 Sprint 2 – Gerenciamento e detalhamento de Imóveis, Criação de Perfis e Avaliações](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-sprint-2--gerenciamento-e-detalhamento-de-im%C3%B3veis-cria%C3%A7%C3%A3o-de-perfis-e-avalia%C3%A7%C3%B5es)
+  - [📅 Sprint 3 – Notificações, Planos Premium e Melhorias de Usabilidade](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-sprint-3--notifica%C3%A7%C3%B5es-planos-premium-e-melhorias-de-usabilidade)
+  - [📅 Sprint 4 – Integrações Críticas e Comunicação entre Usuários](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-sprint-4--integra%C3%A7%C3%B5es-cr%C3%ADticas-e-comunica%C3%A7%C3%A3o-entre-usu%C3%A1rios)
+  - [📅 Sprint 5 – Melhorias Visuais, Avaliações e Funcionalidades de Perfil](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-sprint-5--melhorias-visuais-avalia%C3%A7%C3%B5es-e-funcionalidades-de-perfil)
+- [🚀 MVP (Produto Mínimo Viável)](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-mvp-produto-m%C3%ADnimo-vi%C3%A1vel)
 - [🧪 Protótipos](#🧪-protótipos)
 
 
@@ -475,7 +475,7 @@ Permitir que os usuários personalizem seus perfis com informações pessoais, p
 
 
 
-## 🚀 MVP (Produto Mínimo Viável)
+## 🚀 MVP [Produto Mínimo Viável](https://github.com/EquipeMoovin/Moovin/blob/main/docs/MVP%20Moovin.pdf)
 
 ---
 
