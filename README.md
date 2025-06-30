@@ -54,9 +54,11 @@ Universidade: Universidade Federal do Tocantins
 ---
 
 ## 🔗 Links Importantes
-- Documentação: [link aqui](https://github.com/EquipeMoovin/Moovin/tree/main/docs)
-- Apresentações ou relatórios: [link aqui](https://github.com/EquipeMoovin/Moovin/tree/main/docs/apresenta%C3%A7%C3%B5es)
-- APK: [link aqui](https://github.com/EquipeMoovin/Moovin/blob/main/Backend/static/apks/moovin.apk)
+- [Documentação](https://github.com/EquipeMoovin/Moovin/tree/main/docs)
+- [Apresentações ou relatórios](https://github.com/EquipeMoovin/Moovin/tree/main/docs/apresenta%C3%A7%C3%B5es)
+- [APK](https://github.com/EquipeMoovin/Moovin/blob/main/Backend/static/apks/moovin.apk)
+- [Vídeo comercial](https://github.com/EquipeMoovin/Moovin/blob/main/docs/V%C3%ADdeoComercialMoovin.mp4)
+- [Landing Page](https://moovin.onrender.com/)
 ---
 ## 🎯 Escopo
 
