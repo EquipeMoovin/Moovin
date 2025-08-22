@@ -1,5 +1,34 @@
 # Moovin
 
+![Logo Moovin](Backend/static/moovin-logo.png)
+
+
+## 📋 Sumário
+
+- [📌 Descrição do Projeto](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-descri%C3%A7%C3%A3o-do-projeto)
+- [🧠 Disciplina](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-disciplina)
+- [👥 Integrantes](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-integrantes)
+- [🔗 Links Importantes](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-links-importantes)
+- [🎯 Escopo](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-escopo)
+  - [📝 Introdução](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-introdu%C3%A7%C3%A3o)
+  - [🎯 Objetivo](#🎯-objetivo)
+  - [✅ Requisitos Funcionais](#✅-requisitos-funcionais)
+  - [💎 Funcionalidades Premium – Proprietário](#💎-funcionalidades-premium-–-proprietário)
+  - [💎 Funcionalidades Premium – Inquilino](#💎-funcionalidades-premium-–-inquilino)
+  - [💰 Fontes de Receita](#💰-fontes-de-receita)
+  - [🛠️ Tecnologias Utilizadas](#🛠️-tecnologias-utilizadas)
+  - [🧩 Observações Finais](#🧩-observações-finais)
+- [🏃‍♂️ Sprints](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#%EF%B8%8F-sprints)
+  - [📅 Sprint 1 – Modelagem do Banco e Funcionalidades Básicas](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-sprint-1--modelagem-do-banco-e-funcionalidades-b%C3%A1sicas)
+  - [📅 Sprint 2 – Gerenciamento e detalhamento de Imóveis, Criação de Perfis e Avaliações](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-sprint-2--gerenciamento-e-detalhamento-de-im%C3%B3veis-cria%C3%A7%C3%A3o-de-perfis-e-avalia%C3%A7%C3%B5es)
+  - [📅 Sprint 3 – Notificações, Planos Premium e Melhorias de Usabilidade](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-sprint-3--notifica%C3%A7%C3%B5es-planos-premium-e-melhorias-de-usabilidade)
+  - [📅 Sprint 4 – Integrações Críticas e Comunicação entre Usuários](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-sprint-4--integra%C3%A7%C3%B5es-cr%C3%ADticas-e-comunica%C3%A7%C3%A3o-entre-usu%C3%A1rios)
+  - [📅 Sprint 5 – Melhorias Visuais, Avaliações e Funcionalidades de Perfil](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-sprint-5--melhorias-visuais-avalia%C3%A7%C3%B5es-e-funcionalidades-de-perfil)
+- [🚀 MVP (Produto Mínimo Viável)](https://github.com/EquipeMoovin/Moovin/blob/main/README.md#-mvp-produto-m%C3%ADnimo-vi%C3%A1vel)
+- [🧪 Protótipos](#🧪-protótipos)
+
+
+
 ## 📌 Descrição do Projeto
 Moovin visa conectar locatários e inquilinos, proporcionando um ambiente seguro para a busca, anúncio e gerenciamento de imóveis para aluguel. Além disso, oferecerá funcionalidades adicionais para facilitar a administração dos contratos e aprimorar a experiência do usuário. O compromisso com a segurança se reflete na verificação de perfis e autenticação de usuários, a transparência será promovida por meio de avaliações e relatórios detalhados, e a eficiência será garantida com filtros avançados, notificações inteligentes e comunicação ágil.
 
@@ -25,11 +54,11 @@ Universidade: Universidade Federal do Tocantins
 ---
 
 ## 🔗 Links Importantes
-- Repositório do projeto: [link aqui]
-- Documentação: [link aqui]
-- Protótipo no Figma: [link aqui]
-- Apresentações ou relatórios: [link aqui]
-
+- [Documentação](https://github.com/EquipeMoovin/Moovin/tree/main/docs)
+- [Apresentações ou relatórios](https://github.com/EquipeMoovin/Moovin/tree/main/docs/apresenta%C3%A7%C3%B5es)
+- [APK](https://github.com/EquipeMoovin/Moovin/blob/main/Backend/static/apks/moovin.apk)
+- [Vídeo comercial](https://github.com/EquipeMoovin/Moovin/blob/main/docs/V%C3%ADdeoComercialMoovin.mp4)
+- [Landing Page](https://moovin.onrender.com/)
 ---
 ## 🎯 Escopo
 
@@ -181,7 +210,275 @@ Permitir que os usuários personalizem seus perfis com informações pessoais, p
    - **Revisor:** João Vitor  
 ---
 
-## 🚀 MVP (Produto Mínimo Viável)
+### 📅 Sprint 3 – Notificações, Planos Premium e Melhorias de Usabilidade  
+📆 **Período:** 12/05 a 26/05  
+
+📋 **Objetivo:** Melhorar a experiência do usuário com notificações, agendamento de visitas, acompanhamento de prazos, plano premium, permissões e usabilidade geral.  
+
+🎯 **Valor da Sprint:** Proporcionar recursos mais dinâmicos e exclusivos aos usuários, aumentar o engajamento e garantir maior segurança e organização no acesso às funcionalidades.
+
+---
+
+#### ✅ Requisitos da Sprint:
+
+
+
+1. **Sistema de Notificações**
+   - **Responsável:** Mayconn  
+   - **Revisores:** Pedro e Ana Júlia  
+   - **Descrição:** Criar sistema de notificações em tempo real para alertar os usuários sobre eventos importantes, como mensagens, avaliações ou prazos de aluguel.  
+   - **Funcionalidades:**
+     - Criação de tabela de notificações no banco de dados  
+     - API para envio de notificações por tipo de evento  
+     - Suporte a WebSocket ou push notifications  
+     - Endpoint para marcar notificações como lidas  
+     - Exibição no frontend com ícones e tela dedicada  
+     - Preferências de notificações configuráveis pelo usuário  
+
+
+
+2. **Acompanhamento de Prazos de Aluguel**
+   - **Responsável:** João Vitor  
+   - **Revisores:** Victhor e Mayconn  
+   - **Descrição:** Permitir que o usuário acompanhe os prazos de seus aluguéis ativos e seja notificado sobre renovações e encerramentos.  
+   - **Funcionalidades:**
+     - API para consulta dos aluguéis do usuário  
+     - Sistema de alertas com antecedência (ex.: 3 dias antes)  
+     - Tela para exibir e gerenciar aluguéis ativos, passados e futuros  
+     - Opções para marcar como renovado ou encerrado  
+     - Visualização clara dos prazos e status de cada aluguel  
+
+
+
+3. **Agendamento de Visitas a Imóveis**
+   - **Responsável:** Pedro Lucas  
+   - **Revisores:** João Vitor e Ana Júlia  
+   - **Descrição:** Desenvolver funcionalidade de agendamento de visitas, exclusiva para usuários premium, com controle de datas e status.  
+   - **Funcionalidades:**
+     - Tabela para armazenar solicitações de visitas  
+     - API para criação, confirmação e cancelamento de visitas  
+     - Validação de horários disponíveis  
+     - Interface com calendário interativo  
+     - Tela de histórico de visitas e seus status  
+     - Integração completa com backend  
+
+
+
+4. **Plano Premium para Inquilinos e Proprietários**
+   - **Responsável:** Victhor  
+   - **Revisor:** Mayconn  
+   - **Descrição:** Desenvolver o sistema de controle de planos premium e seus acessos, com gerenciamento de assinaturas e liberação de funcionalidades exclusivas.  
+   - **Funcionalidades:**
+     - Backend com tabelas para assinaturas e status  
+     - API para verificar e renovar plano premium  
+     - Controle de acesso a funcionalidades exclusivas (como agendamento)  
+     - Tela para exibir plano atual e adquirir assinatura  
+     - Alertas de expiração e renovação  
+
+
+
+5. **Refatorar Permissões do Backend**
+   - **Responsável:** Victhor  
+   - **Revisor:** Pedro  
+   - **Descrição:** Refatorar o sistema de permissões no backend para garantir controle seguro e organizado de acesso baseado em tipo de usuário.  
+   - **Funcionalidades:**
+     - Criação de sistema de roles (funções) no backend  
+     - APIs protegidas por permissões específicas  
+     - Validações por tipo de usuário (inquilino, proprietário, admin)  
+     - Adaptação do frontend para respeitar os níveis de acesso  
+     - Feedback visual em caso de acesso negado  
+
+
+6. **Menus de Navegação e Refatoração de Telas**
+   - **Responsável:** Ana Júlia  
+   - **Revisores:** João Vitor e Victhor  
+   - **Descrição:** Melhorar a usabilidade do app com navegação intuitiva e organização clara das telas.  
+   - **Funcionalidades:**
+     - Refatoração do fluxo de navegação com menus claros e acessíveis  
+     - Implementação de componentes como BottomNavigationBar ou Drawer  
+     - Organização por categorias e ícones orientativos  
+     - Exibição de dados dinâmicos nas telas (perfil, imóveis, favoritos)  
+     - Integração com permissões e autenticação  
+     - Backend preparado para fornecer os dados necessários  
+
+
+
+### 📅 Sprint 4 – Integrações Críticas e Comunicação entre Usuários  
+📆 **Período:** 26/05 a 09/06 
+
+📋 **Objetivo:** Implementar funcionalidades críticas como sistema de pagamento, recuperação de senha, chat entre usuários e landing page.  
+
+🎯 **Valor da Sprint:** Proporcionar uma experiência segura, interativa e integrada no Moovin, com foco em serviços externos, segurança e comunicação.
+
+---
+
+#### ✅ Requisitos da Sprint:
+
+
+1. **Integração com API de Pagamento**
+   - **Responsável:** Victhor  
+   - **Revisor:** Mayconn  
+   - **Descrição:** Integrar o Moovin com o Stripe, permitindo transações seguras no app. A interface será feita com Flutter e o backend em Django validará as operações.  
+   - **Funcionalidades:**
+     - Integração com Stripe via SDK ou API REST  
+     - Tela de seleção de assinatura e execução do pagamento  
+     - Endpoint Django para webhooks de pagamento  
+     - Armazenamento seguro de transações  
+     - Feedback em tempo real ao usuário  
+
+
+2. **Chat de Mensagens**
+   - **Responsáveis:** Mayconn e Pedro  
+   - **Revisor:** João Vitor  
+   - **Descrição:** Desenvolver chat em tempo real entre usuários usando Flutter e backend Django com autenticação JWT e persistência de mensagens.  
+   - **Funcionalidades:**
+     - Interface de chat com envio e recebimento em tempo real  
+     - Controle de acesso e autenticação JWT  
+     - Status de mensagens: enviadas, entregues e lidas  
+     - Integração com sistema de notificações  
+     - Funcionalidades extras para usuários premium:
+       - Registro de visitas  
+       - Registro de aluguéis  
+
+
+3. **Recuperação de Senha ("Esqueci minha senha")**
+   - **Responsável:** João Vitor  
+   - **Revisores:** Ana Júlia e Pedro  
+   - **Descrição:** Criar fluxo seguro de redefinição de senha via e-mail, com geração de token, envio automático e validação no backend.  
+   - **Funcionalidades:**
+     - Tela de solicitação de recuperação no Flutter  
+     - Backend para geração de token temporário  
+     - Envio automático de e-mail com link de redefinição  
+     - Validação do token e redefinição da senha  
+     - Expiração automática de tokens  
+     - Feedback claro ao usuário  
+
+
+4. **Landing Page do Produto**
+   - **Responsável:** Ana Júlia  
+   - **Revisor:** Victhor  
+   - **Descrição:** Criar página de apresentação do Moovin com identidade visual moderna, minimalista e responsiva, promovendo o app e o plano premium.  
+   - **Funcionalidades e Seções:**
+     1. **Topo da Página:**  
+        - Nome e slogan  
+        - Mockup do app  
+        - Botões “Baixar APK” e “Assine agora”  
+     2. **Descrição e Benefícios:**  
+        - Texto explicativo sobre o Moovin  
+        - Lista de funcionalidades  
+        - Depoimentos ou cases de sucesso  
+     3. **Diferenciais do Moovin:**  
+        - Destaque para vantagens competitivas (facilidade, transparência, etc.)  
+     4. **Plano Premium para Proprietários:**  
+        - Benefícios exclusivos  
+        - Tabela comparativa entre planos  
+        - Botão de assinatura destacado  
+     5. **Instruções para Download:**  
+        - Link direto, QR Code e orientações sobre APK  
+     6. **FAQ:**  
+        - Dúvidas frequentes (assinatura, segurança, senha)  
+   - **Funcionalidades Técnicas:**
+     - Redirecionamento para checkout no botão “Assine agora”  
+     - Link direto para download do APK  
+
+### 📅 Sprint 5 – Melhorias Visuais, Avaliações e Funcionalidades de Perfil  
+📆 **Período:** 10/06 a 24/06  
+📋 **Objetivo:** Corrigir pendências identificadas durante o uso do aplicativo, implementar funcionalidades de avaliação e gerenciamento de aluguéis, além de aprimorar a experiência de navegação e criação de perfis.  
+🎯 **Valor da Sprint:** Corrigir falhas críticas e agregar novas funcionalidades que melhoram a usabilidade, fluidez e confiabilidade do sistema, com foco em avaliações, perfis e interface.
+
+
+#### ✅ Requisitos da Sprint:
+
+
+1. **Ajustar exibição de avaliações e imagens no search-immobile**
+   - **Responsável:** João Vitor  
+   - **Revisor:** Mayconn  
+   - **Descrição:** Exibir corretamente a média das avaliações reais de cada imóvel e carregar suas imagens na listagem de busca.  
+   - **Funcionalidades:**
+     - Ajuste da lógica de cálculo e exibição da nota do imóvel  
+     - Integração com banco de dados de imagens para exibição no card de busca  
+
+
+2. **Inserir foto ao criar perfil**
+   - **Responsável:** Pedro Lucas  
+   - **Revisor:** Victhor  
+   - **Descrição:** Adicionar campo de upload de imagem ao formulário de criação de perfil.  
+   - **Funcionalidades:**
+     - Upload de imagem no Flutter  
+     - Armazenamento da imagem no backend  
+     - Exibição da imagem de perfil após criação  
+
+
+3. **Adicionar botão de "Alugar" nos detalhes do imóvel**
+   - **Responsável:** Mayconn  
+   - **Revisor:** João Vitor  
+   - **Descrição:** Criar botão de ação que leve o usuário direto ao chat com o proprietário, com envio automático de mensagem padrão.  
+   - **Funcionalidades:**
+     - Botão fixo no detalhe do imóvel  
+     - Redirecionamento automático para o chat  
+     - Envio de mensagem como "Olá! Tenho interesse neste imóvel."  
+
+
+4. **Direcionamento automático para perfil de Owner ou Tenant**
+   - **Responsável:** Mayconn  
+   - **Revisor:** Pedro  
+   - **Descrição:** Implementar lógica de direcionamento condicional para o tipo de perfil (proprietário ou inquilino) conforme o tipo de usuário logado.  
+   - **Funcionalidades:**
+     - Verificação do tipo de perfil no login  
+     - Renderização dinâmica da navbar e redirecionamento correto  
+
+
+5. **Refatorar tela de detalhes do imóvel (Frontend)**
+   - **Responsável:** Ana Júlia  
+   - **Revisor:** Ana Júlia  
+   - **Descrição:** Melhorar o design visual e organização dos elementos da tela de detalhes para torná-la mais intuitiva e consistente.  
+   - **Funcionalidades:**
+     - Ajustes no layout (cores, espaçamento, botões)  
+     - Padronização com restante do app  
+
+
+6. **Resolver problemas na criação de perfil**
+   - **Responsável:** Pedro Lucas 
+   - **Revisor:** Mayconn  
+   - **Descrição:** Corrigir erros e bugs que impedem ou dificultam o processo de criação de perfil.  
+   - **Funcionalidades:**
+     - Verificação de campos obrigatórios  
+     - Tratamento de erros no backend e frontend  
+     - Testes de fluxo completo de criação  
+
+
+7. **Exibir informações do proprietário na página de detalhes do imóvel**
+   - **Responsável:** Ana Júlia e Victhor
+   - **Revisor:** Victhor  
+   - **Descrição:** Permitir que o usuário visualize o perfil do proprietário ao acessar os detalhes de um imóvel.  
+   - **Funcionalidades:**
+     - Link ou botão “Ver proprietário”  
+     - Exibição de informações básicas do perfil (nome, foto, avaliações)  
+
+
+8. **Permitir avaliações de perfis (proprietário e inquilino)**
+   - **Responsável:** João Vitor  
+   - **Revisores:** Ana Júlia e João Vitor  
+   - **Descrição:** Permitir que usuários avaliem mutuamente após uma locação concluída.  
+   - **Funcionalidades:**
+     - Backend para armazenar avaliações de usuários  
+     - Tela de avaliação no app com nota e comentário  
+     - Exibição da média de avaliações no perfil  
+
+
+9. **Adicionar registro de aluguéis no painel do proprietário**
+   - **Responsável:** Victhor  
+   - **Revisor:** Pedro  
+   - **Descrição:** Implementar tela no painel do proprietário com a listagem de aluguéis realizados e seus detalhes.  
+   - **Funcionalidades:**
+     - API para listagem de aluguéis vinculados ao proprietário  
+     - Tela com imóveis alugados, datas e inquilino  
+     - Filtros e ordenação por data ou imóvel  
+
+
+
+
+## 🚀 MVP [Produto Mínimo Viável](https://github.com/EquipeMoovin/Moovin/blob/main/docs/MVP%20Moovin.pdf)
 
 ---
 
@@ -189,5 +486,4 @@ Permitir que os usuários personalizem seus perfis com informações pessoais, p
 - Versão final no [Figma](https://www.figma.com/design/Y1FgOveRfAKnDERhYwlbF4/Untitled?node-id=32-2&t=Xh5WSWHNx7wfXYiD-1)
 
 ---
-
 

@@ -136,7 +136,10 @@
                 <div class="download-instructions">
                     <img src="{% static 'qr-code-placeholder.png' %}" alt="QR Code para Download do APK" class="qr-code">
                     <p>Escaneie o QR Code ou clique no link abaixo:</p>
-                    <p>Download do APK em breve!</p>
+                    <a class='apk-link' href="{% static 'apks/moovin.apk' %}" download>
+                        <button class="btn btn-primary">📥 Baixar APK</button>
+                    </a>
+
 
                     <p style="margin-top: 2rem;"><strong>Instruções para instalar o APK no Android:</strong></p>
                     <ol class="instructions-list">
