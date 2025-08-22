@@ -95,8 +95,7 @@ class _SearchImmobileScreenState extends State<SearchImmobileScreen> {
         imoveis = lista;
         isLoading = false;
       });
-    } catch (e) {
-      print('Erro ao buscar imóveis: $e');
+    } catch (e) {// print removido por segurança
       setState(() {
         isLoading = false;
       });
@@ -483,8 +482,7 @@ class _SearchImmobileScreenState extends State<SearchImmobileScreen> {
                     );
                   }
                   break;
-                case 'configuracoes':
-                  print('Configurações selecionadas');
+                case 'configuracoes':// print removido por segurança
                   break;
                 case 'planos_assinaturas':
                    final Uri url = Uri.parse('https://moovin.onrender.com/api/owners/management/');
@@ -494,8 +492,7 @@ class _SearchImmobileScreenState extends State<SearchImmobileScreen> {
                      throw 'Não foi possível abrir o link: $url';
                               }
                               break;
-                case 'logout':
-                  print('Logout selecionado');
+                case 'logout':// print removido por segurança
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(builder: (context) => const LoginScreen()),
@@ -656,8 +653,7 @@ class _SearchImmobileScreenState extends State<SearchImmobileScreen> {
                   onTap: () async {
                     final filtros = await _abrirBottomSheet(context);
 
-                    if (filtros != null) {
-                      print(filtros);
+                    if (filtros != null) {// print removido por segurança
 
                       setState(() {
                         isLoading = true;
@@ -697,8 +693,7 @@ class _SearchImmobileScreenState extends State<SearchImmobileScreen> {
                     setState(() {
                       isPressedMap['Casa'] = true;
                     });
-                    final tipoSelecionado = tipoMap['Casa'];
-                    print('Tipo selecionado: $tipoSelecionado');
+                    final tipoSelecionado = tipoMap['Casa'];// print removido por segurança
                     await fetchImmobiles({'tipo': tipoSelecionado});
                     setState(() {
                       isPressedMap['Casa'] = false;
@@ -717,8 +712,7 @@ class _SearchImmobileScreenState extends State<SearchImmobileScreen> {
                           isPressedMap['Kitnet'] = false;
                         }
                       });
-                      final tipoSelecionado = isPressedMap['Casa']! ? tipoMap['Casa'] : null;
-                      print('Tipo selecionado: $tipoSelecionado');
+                      final tipoSelecionado = isPressedMap['Casa']! ? tipoMap['Casa'] : null;// print removido por segurança
                       fetchImmobiles({'tipo': tipoSelecionado});
                     },
                   ),
@@ -728,8 +722,7 @@ class _SearchImmobileScreenState extends State<SearchImmobileScreen> {
                     setState(() {
                       isPressedMap['Apartamento'] = true;
                     });
-                    final tipoSelecionado = tipoMap['Apartamento'];
-                    print('Tipo selecionado: $tipoSelecionado');
+                    final tipoSelecionado = tipoMap['Apartamento'];// print removido por segurança
                     await fetchImmobiles({'tipo': tipoSelecionado});
                     setState(() {
                       isPressedMap['Apartamento'] = false;
@@ -748,8 +741,7 @@ class _SearchImmobileScreenState extends State<SearchImmobileScreen> {
                           isPressedMap['Kitnet'] = false;
                         }
                       });
-                      final tipoSelecionado = isPressedMap['Apartamento']! ? tipoMap['Apartamento'] : null;
-                      print('Tipo selecionado: $tipoSelecionado');
+                      final tipoSelecionado = isPressedMap['Apartamento']! ? tipoMap['Apartamento'] : null;// print removido por segurança
                       fetchImmobiles({'tipo': tipoSelecionado});
                     },
                   ),
@@ -759,8 +751,7 @@ class _SearchImmobileScreenState extends State<SearchImmobileScreen> {
                     setState(() {
                       isPressedMap['Kitnet'] = true;
                     });
-                    final tipoSelecionado = tipoMap['Kitnet'];
-                    print('Tipo selecionado: $tipoSelecionado');
+                    final tipoSelecionado = tipoMap['Kitnet'];// print removido por segurança
                     await fetchImmobiles({'tipo': tipoSelecionado});
                     setState(() {
                       isPressedMap['Kitnet'] = false;
@@ -779,8 +770,7 @@ class _SearchImmobileScreenState extends State<SearchImmobileScreen> {
                           isPressedMap['Apartamento'] = false;
                         }
                       });
-                      final tipoSelecionado = isPressedMap['Kitnet']! ? tipoMap['Kitnet'] : null;
-                      print('Tipo selecionado: $tipoSelecionado');
+                      final tipoSelecionado = isPressedMap['Kitnet']! ? tipoMap['Kitnet'] : null;// print removido por segurança
                       fetchImmobiles({'tipo': tipoSelecionado});
                     },
                   ),

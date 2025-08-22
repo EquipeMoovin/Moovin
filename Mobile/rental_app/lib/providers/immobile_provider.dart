@@ -23,25 +23,18 @@ class ImmobileProvider with ChangeNotifier {
   });
 
   try {
-    print('Buscando imóvel com id $id');
     _immobile = await _apiService.fetchOneImmobile(id);
-    print('Imóvel recebido: $_immobile');
-
     if (_immobile?.photosBlob != null) {
-      print('Fotos encontradas: ${_immobile!.photosBlob.length}');
-
       for (final photo in _immobile!.photosBlob) {
-        print('Buscando imagem para photoId: ${photo.photoId}');
         final imageData = await _apiService.fetchImageBlob(photo.photoId);
         photo.imageBase64 = imageData.imageBase64;
         photo.contentType = imageData.contentType;
       }
     } else {
-      print('Nenhuma foto foi encontrada.');
+
     }
   } catch (e, stackTrace) {
-    print('Erro ao buscar imóvel ou imagens: $e');
-    print('StackTrace: $stackTrace');
+
     _error = e.toString();
   } finally {
     _isLoading = false;

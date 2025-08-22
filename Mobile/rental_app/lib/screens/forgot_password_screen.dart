@@ -51,7 +51,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       }
     } catch (e) {
       setState(() {
-        _errorMessage = 'Erro ao enviar código: ${e.toString()}';
+        _errorMessage = 'Algo deu errado. Tente novamente.';
         _currentState = ForgotPasswordFlowState.emailInput;
       });
     }
@@ -94,7 +94,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       }
     } catch (e) {
       setState(() {
-        _errorMessage = 'Erro: ${e.toString()}';
+        _errorMessage = 'Algo deu errado. Tente novamente.';
         _currentState = ForgotPasswordFlowState.codeAndNewPasswordInput;
       });
     }
@@ -183,7 +183,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   borderSide: BorderSide(color: Color(0xFF2F6D3C), width: 2.0),
                 ),
             ),
-            keyboardType: TextInputType.number,
+            keyboardType: TextInputType.text,
           ),
           const SizedBox(height: 10),
           TextField(

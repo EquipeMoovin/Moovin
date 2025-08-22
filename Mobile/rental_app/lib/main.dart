@@ -35,7 +35,7 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => NotificationProvider()),
-        ChangeNotifierProvider(create: (_) => OwnerProvider()), // ✅ Adicionado
+        ChangeNotifierProvider(create: (_) => OwnerProvider()),
         ChangeNotifierProvider(create: (_) => ChatProvider()),
         ChangeNotifierProvider(create: (_) => TenantProvider()),
         ChangeNotifierProvider(create: (_) => ImmobileProvider()),

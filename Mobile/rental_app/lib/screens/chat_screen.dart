@@ -39,10 +39,8 @@ class _ChatScreenState extends State<ChatScreen> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final provider = Provider.of<ChatProvider>(context, listen: false);
-      provider.fetchConversations().then((_) {
-        print(' Conversas carregadas: ${provider.conversations.length}');
-      }).catchError((error) {
-        print(' Erro ao carregar conversas: $error');
+      provider.fetchConversations().then((_) {// print removido por segurança
+      }).catchError((error) {// print removido por segurança
       });
     });
   }

@@ -100,8 +100,7 @@ class ApiService {
     }
   }
   //email-----
-   Future<Map<String, dynamic>> requestEmailVerification(String email) async {
-    print(baseUrl);
+   Future<Map<String, dynamic>> requestEmailVerification(String email) async {// print removido por segurança
     try {
       final response = await http.post(
         Uri.parse('$baseUrl/users/request-email-verification/'),
@@ -132,12 +131,10 @@ class ApiService {
         // Sucesso na verificação
         return true;
       } else {
-        // Falha na verificação
-        print('Erro na verificação do código: ${response.statusCode} - ${response.body}');
+        // Falha na verificação// print removido por segurança
         return false;
       }
-    } catch (e) {
-      print('Erro ao enviar a requisição de verificação: $e');
+    } catch (e) {// print removido por segurança
       return false;
     }
   }
