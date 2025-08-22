@@ -1,0 +1,39 @@
+name: moovin-dev
+
+services:
+  db:
+    image: postgres:15
+    container_name: moovin-db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-moovin}
+      POSTGRES_USER: ${POSTGRES_USER:-moovin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-moovin123}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - moovin-net
+
+  backend:
+    build:
+      context: ./Backend       # raiz do backend
+      dockerfile: Dockerfile.dev
+    container_name: moovin-backend
+    volumes:
+      - ./backend:/app
+    command: sh /app/entrypoint.sh        # monta todo o backend dentro do container
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    env_file:
+      - .env
+    networks:
+      - moovin-net
+
+volumes:
+  postgres_data:
+
+networks:
+  moovin-net:

@@ -140,19 +140,26 @@ ASGI_APPLICATION = 'backend.asgi.application'
 
 import dj_database_url
 
+
 if os.getenv('DATABASE_URL'):
     DATABASES = {
-        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+        'default': dj_database_url.config(
+            conn_max_age=600,
+            ssl_require=os.getenv("DJANGO_SSL_REQUIRE", "False") == "True"
+        )
     }
 else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.getenv('DB_NAME'),
-            'USER': os.getenv('DB_USER'),
-            'PASSWORD': os.getenv('DB_PASSWORD'),
+            'NAME': os.getenv('POSTGRES_DB'),
+            'USER': os.getenv('POSTGRES_USER'),
+            'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
             'HOST': os.getenv('DB_HOST'),
             'PORT': os.getenv('DB_PORT'),
+            'OPTIONS': {
+                "sslmode": "disable"  
+            }
         }
     }
 
