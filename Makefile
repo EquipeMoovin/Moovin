@@ -19,7 +19,7 @@ reset-db:
 	$(COMPOSE) -f $(FILE) down -v
 
 clean-migrations:
-	./tools/clean_migrations.sh
+	./backend/clean_migrations.sh
 
 logs:
 	$(COMPOSE) -f $(FILE) logs -f backend

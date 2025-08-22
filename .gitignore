@@ -13,7 +13,7 @@ __pycache__/
 *.tmp
 # Ignora tudo na pasta migrations exceto os arquivos Python
 **/migrations/*
-!**/migrations/*.py
+!*/migrations/*.py
 
 
 *.py[cod]
